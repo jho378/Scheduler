@@ -1,0 +1,286 @@
+*{
+    font-family : 'caveat'
+}
+body {
+    margin: 0;
+    min-width:1450px;
+}
+a {
+    text-decoration : none;
+    color : white;
+}
+.navbar{
+    display:flex;
+    justify-content : space-between;
+    align-items : center;
+    /* background-color: rgb(0, 51, 102); */
+    background-color:#263343;
+    padding: 8px 12px;
+}
+.navbar_logo{
+    font-size: 24px;
+    color : white;
+}
+.navbar_logo i{
+    color: #d49466;
+}
+.navbar_menu{
+    display:flex;
+    list-style: none;
+    padding-left: 0;
+}
+
+.navbar_menu li{
+    padding:8px 20px;
+    font-size: 20px;
+}
+.navbar_menu li:hover{
+    background-color:#d49466;
+    border-radius: 4px;
+}
+.navbar_icons{
+    display:flex;
+    list-style:none;
+    color:white;
+    padding-left:0;
+}
+
+.navbar_icons li{
+    padding: 8px 12px;
+}
+
+.navbar_toggleBtn{
+    position:absolute;
+    right:32px;
+    font-size:24px;
+    color:#d49466;
+    display:none;
+}
+/* 여기까지가 위에 navbar 꾸민것 */
+
+.calender{
+    width:1400px;
+    margin:auto;
+}
+.cal_header {
+    display : flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cal_year-month{
+    font-size:35px;
+}
+.mustdolist li{
+    text-decoration: underline;
+}
+.days{
+    display:flex;
+    margin:25px 0 10px;
+}
+.day{
+    width : 200px;
+    font-size:20px;
+    text-align:center;
+}
+.dates{
+    display:flex;
+    flex-flow:row wrap;
+    height:700px;
+    border-top : 1px solid #333333;
+    border-right : 1px solid #333333;
+}
+.date{
+    width : 196.8px;
+    
+    padding : 0px;
+    font-size:20px;
+    text-align:left;
+    padding:1px;
+    border-bottom:1px solid #333333;
+    border-left:1px solid #333333;
+}
+
+.day:nth-child(7n+1),
+.date:nth-child(7n+1){
+    color:#D13E3E;
+}
+
+.day:nth-child(7n),
+.date:nth-child(7n){
+    color:#396EE2;
+}
+.other {
+    opacity: .3;
+}
+.planner{
+    display:flex;
+}
+.memo{
+    background-color: #E7EAD9;
+}
+.today{
+    position : relative;
+    color: #FFFFFF;
+}
+.today::before{
+    position : absolute;
+    top:50%;
+    left:70%;
+    z-index: -1;
+    display: block;
+    width : 15px;
+    height: 15px;
+    background-color : #d49466;
+    border-radius: 50%;
+    transform : translate(-50%, -50%);
+    content : '';
+}
+
+/* 여기까지가 달력 본체 */
+
+/* 여기까지가 위에 navbar 꾸민것 */
+
+/* 이 아래부터는 semantic ui Overriding하는것 */
+
+.progress{
+    margin-top : 20px;
+}
+progress {
+    width:1400px;
+    height:30px;
+}
+progress {
+    -webkit-appearance:none;
+    appearance: none;
+    border-radius: 20px;
+    background:white; 
+ 
+}
+progress::-webkit-progress-value{
+    border : 0; 
+    
+    border-radius: 20px;
+    background:#263343;
+}
+progress::-webkit-progress-bar{
+    border-radius:20px;
+    background-color:#eee;
+}
+label{
+    font-size:25px;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+}
+
+.progress div{
+    margin-bottom : 20px;
+}
+
+@media screen and (max-width:1400px){
+    .calender{
+        width:945px;
+        margin:auto;
+    }
+    progress{
+        width:945px;
+        margin:auto;
+    }
+    .cal_header {
+        display : flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .days{
+        display:flex;
+        margin:25px 0 10px;
+    }
+    .day{
+        width : 135px;
+        font-size:20px;
+        text-align:center;
+    }
+    .dates{
+        display:flex;
+        flex-flow:row wrap;
+        height:472px;
+        border-top : 1px solid #333333;
+        border-right : 1px solid #333333;
+    }
+    .date{
+        width : 131.85px;
+        padding : 0px;
+        font-size:20px;
+        text-align:left;
+        padding:1px;
+        border-bottom:1px solid #333333;
+        border-left:1px solid #333333;
+    }
+}
+@media screen and (max-width:768px){
+    .navbar {
+        flex-direction:column;
+        align-items: flex-start;
+        padding:8px 24px;
+    }
+    .navbar_menu{
+        display:none;
+        flex-direction:column;
+        align-items: center;
+        width:100%;
+    }
+    .navbar_menu li{
+        width:100%;
+        text-align:center;
+    }
+    .navbar_icons{
+        display:none;
+        justify-content: center;
+        width:100%;
+    }
+    .navbar_toggleBtn{
+        display:block;
+    }
+    
+    .navbar_menu.active,
+    .navbar_icons.active{
+        display:flex;
+    }
+    .calender{
+        width:630px;
+        margin:auto;
+    }
+    progress{
+        width:630px;
+    }
+    .cal_header {
+        display : flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .days{
+        display:flex;
+        margin:25px 0 10px;
+    }
+    .day{
+        width : 90px;
+        font-size:20px;
+        text-align:center;
+    }
+    .dates{
+        display:flex;
+        flex-flow:row wrap;
+        height:315px;
+        border-top : 1px solid #333333;
+        border-right : 1px solid #333333;
+    }
+    .date{
+        width : 86.84px;
+        padding : 0px;
+        font-size:20px;
+        text-align:left;
+        padding:1px;
+        border-bottom:1px solid #333333;
+        border-left:1px solid #333333;
+    }
+}
