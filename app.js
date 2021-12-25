@@ -53,7 +53,7 @@ app.post('/books/create', setAuth, async(req, res) => {
     const user = req.user;
     const {title, author, quote, genre, page, rating} = req.body
     const book = new Book({
-        title, author, quote, genre, page, user, rating,
+        title, author, quote, genre, page, user, rating, isDeleted : false
     });
     await book.save();
     res.send(book);
@@ -62,7 +62,7 @@ app.post('/books/create', setAuth, async(req, res) => {
 app.get('/books', setAuth, async(req, res) => {
     const user = req.user;
     try{
-    const books = await Book.find({user});
+    const books = await Book.find({user, isDeleted : false});
     const bookstitle = books.map(e => e.title); 
     const booksAuthor = books.map(e => e.author);
     const booksQuote = books.map(e => e.quote);
@@ -77,7 +77,7 @@ app.get('/books/:book', setAuth, async(req, res) => {
     const user = req.user;
     const {bookTitle} = req.params;
     try{
-        const book = await Book.findOne({user, title:bookTitle});
+        const book = await Book.findOne({user, title:bookTitle, isDeleted : false});
         const {title, author, quote, genre, page, rating} = book;
         res.send({title, author, quote, genre, page, rating});
     } catch(err){
@@ -89,7 +89,7 @@ app.put('/books/:book', setAuth, async(req, res) => {
     const user = req.user;
     const {bookTitle} = req.params;
     const {title, author, quote, genre, page, rating} = req.body;
-    const _book = await Book.findOne({user, title:bookTitle});
+    const _book = await Book.findOne({user, title:bookTitle, isDeleted : false});
     
     _book.title = title;
     _book.author = author;
@@ -104,10 +104,13 @@ app.put('/books/:book', setAuth, async(req, res) => {
 app.delete('/books/:book', setAuth, async(req, res) => {
     const user = req.user;
     const {bookTitle} = req.params;
-    const _book = await Book.findOne({user, title : bookTitle});
-    await Book.deleteOne({user, title:bookTitle});
+    const _book = await Book.findOne({user, title : bookTitle, isDeleted : false});
+    
+    _book.isDeleted = true;
+    await _book.save();
     res.send(_book);
 })
+
 // Book done by now ; 
 
 
@@ -115,8 +118,9 @@ app.delete('/books/:book', setAuth, async(req, res) => {
 app.post('/schedules/create', setAuth, async(req, res) => {
     const user = req.user;
     const {date, title, description} = req.body;
+    const id = await Schedule.countDocuments({user}) + 1;
     const schedule = new Schedule({
-        date, title, description, user, isDone, 
+        date, title, description, user, id, isDone : false, isDeleted : false,
     });
     await schedule.save();
     res.send(schedule);
@@ -125,18 +129,52 @@ app.post('/schedules/create', setAuth, async(req, res) => {
 app.get('/schedules', setAuth, async(req, res) => {
     const user = req.user;
     try{
-    const schedules = await Schedule.find({user});
+    const schedules = await Schedule.find({user, isDeleted : false});
     const dates = schedules.map(e => e.date); 
     const descriptions = schedules.map(e => e.description);
     const isDones = schedules.map(e => e.isDone);
     const schedulesJson = {dates, descriptions, isDones};  
     res.send(schedulesJson);
     } catch(err){
-        return res.status(400).send({error: 'Error occured when updating books.'});
+        return res.status(400).send({error: 'Error occured when updating schedules.'});
     }
 });
+// single Schedule read
+app.get('/schedules/:id', setAuth, async(req, res) => {
+    const user = req.user;
+    const {scheduleId} = req.params;
+    try{
+        const schedule = await Schedule.findOne({user, id:parseInt(scheduleId), isDeleted : false,});
+        const {date, title, description, user, id, isDone} = schedule;
+        res.send({date, title, description, user, id, isDone});
+    } catch(err){
+        return res.status(400).send({error : 'Error found when showing the book. Ask admin.'});
+    }
+})
+// Schedule update
+app.put('/schedules/:id', setAuth, async(req, res)=> {
+    const user = req.user;
+    const {scheduleId} = req.params;
+    const {date, title, description, isDone} = req.body;
+    const _schedule = await Schedule.findOne({user, id : parseInt(scheduleId), isDeleted: false});
 
-
+    _schedule.date = date;
+    _schedule.title = title;
+    _schedule.description = description;
+    _schedule.isDone = isDone;
+    await _schedule.save();
+})
+// Schedule delete 
+app.delete('/schedules/:id', setAuth, async(req ,res) => {
+    const user = req.user;
+    const {scheduleId} = req.params;
+    const _schedule = await Schedule.findOne({user, id : parseInt(scheduleId), isDeleted:false});
+    
+    _schedule.isDeleted = true;
+    await _schedule.save();
+    // id 순서 다시 바꿔주는 로직!
+    res.send(_schedule);
+})
 
 
 
