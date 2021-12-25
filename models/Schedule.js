@@ -8,5 +8,6 @@ const scheduleSchema = new Schema({
     isDone : {type : Boolean, default : false},
 }) 
 
+
 const Schedule = mongoose.model('Schedule', scheduleSchema);
 module.exports = Schedule;

@@ -13,6 +13,7 @@ const init = async() => {
     await User.deleteMany();
     await Schedule.deleteMany();
 
+    
     const coins = ['bitcoin', 'ethereum', 'dogecoin', 'ripple', 'solana'];
     const stocks = ['COST', 'MSFT', 'GOOG', 'AMZN', 'TSLA', 'NKE', 'IONQ', 'PLTR', 'SBUX', 'AAPL', 'KO', 'JPM','BRK-B', 'AXP', 'O', 'PG', 'ABNB'];
     // maybe add ETF later;

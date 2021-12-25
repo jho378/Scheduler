@@ -12,6 +12,7 @@ const mongoURL = 'mongodb://admin:<pw>@calendar-shard-00-00.pfpok.mongodb.net:27
 mongoose.connect(mongoURL);
 if(mongoose.connect(mongoURL))  console.log('connected to DB');
 
+
 module.exports = {
     Asset,
     Book,

@@ -18,5 +18,6 @@ assetSchema.index({name:1, user:1}, {unique : true});
 const Asset = mongoose.model('Asset', assetSchema);
 module.exports = Asset; 
 
+
 // done by now
 // sector industry -> https://www.msci.com/our-solutions/indexes/gics

@@ -9,6 +9,7 @@ const stockSchema = new Schema({
     isActive : Boolean,
 })
 
+
 const Stock = mongoose.model('Stock', stockSchema);
 module.exports = Stock;
 
