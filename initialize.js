@@ -11,6 +11,7 @@ const init = async() => {
     await Key.deleteMany();
     await Stock.deleteMany();
     await User.deleteMany();
+    await Schedule.deleteMany();
 
     const coins = ['bitcoin', 'ethereum', 'dogecoin', 'ripple', 'solana'];
     const stocks = ['COST', 'MSFT', 'GOOG', 'AMZN', 'TSLA', 'NKE', 'IONQ', 'PLTR', 'SBUX', 'AAPL', 'KO', 'JPM','BRK-B', 'AXP', 'O', 'PG', 'ABNB'];
@@ -66,9 +67,6 @@ const init = async() => {
             stockIndustries.push(industry);
         })
     }
-
-    subParsing('TSLA');
-
 
     for(const _stock of stocks){
         try{
