@@ -8,7 +8,7 @@ const Stock = require('./Stock');
 const User = require('./User');
 const Schedule = require('./Schedule');
 
-const mongoURL = 'mongodb://admin:wlsgh741@calendar-shard-00-00.pfpok.mongodb.net:27017,calendar-shard-00-01.pfpok.mongodb.net:27017,calendar-shard-00-02.pfpok.mongodb.net:27017/calendarServer?ssl=true&replicaSet=atlas-nlsbae-shard-0&authSource=admin&retryWrites=true&w=majority';
+const mongoURL = 'mongodb://admin:<pw>@calendar-shard-00-00.pfpok.mongodb.net:27017,calendar-shard-00-01.pfpok.mongodb.net:27017,calendar-shard-00-02.pfpok.mongodb.net:27017/calendarServer?ssl=true&replicaSet=atlas-nlsbae-shard-0&authSource=admin&retryWrites=true&w=majority';
 mongoose.connect(mongoURL);
 if(mongoose.connect(mongoURL))  console.log('connected to DB');
 
