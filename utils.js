@@ -8,6 +8,7 @@ const encryptPassword = (password) => {
 
 const setAuth = async(req, res, next) => {
     const authorization = req.headers.authorization;
+    // front : const key = jwt.sign({publicKey : pub}, sec {expiresIn : 3600});
     const [bearer, key] = authorization.split(' ');
     if(bearer!=='Bearer') return res.status(400).send({error : 'Wrong Authorization'});
     const decodedJwt = jwt.decode(key);
@@ -18,6 +19,7 @@ const setAuth = async(req, res, next) => {
     try{
         console.log('verifying');
         const verified = jwt.verify(key, _key.secretKey);
+        // user = await User.findById(_key.user);
         user = _key.user;
     }   catch(e){
         return res.status(403).send({error: 'Invalid token'});
