@@ -1,4 +1,4 @@
-const {Asset, Book, Coin, Key, Stock, User} = require('./models');
+const {Asset, Book, Coin, Key, Stock, User, Schedule} = require('./models');
 const axios = require('axios');
 const cheerio = require('cheerio');
 let start = 0;

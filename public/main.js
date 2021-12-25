@@ -62,7 +62,8 @@ if(URLSearch[1].length===0){
 }
 else{   
     let tmp = month.indexOf(URLSearch[1]);
-        now.setDate(1);
-        now.setMonth(tmp);
-        renderCalendar()
+    console.log(URLSearch[1])
+    now.setDate(1);
+    now.setMonth(tmp);
+    renderCalendar();
 }

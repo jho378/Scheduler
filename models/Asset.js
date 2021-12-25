@@ -6,7 +6,9 @@ const assetSchema = new Schema({
     ticker : String,
     sector : String,
     industry : String,
-    price : Number,
+    dateOfPurchase : {type : Date, default : Date.now},
+    purchasePrice : Number,
+    currentPrice : Number,
     balance : Number,
     user : {type : Schema.Types.ObjectId, ref:'user'},
 })

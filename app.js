@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const path = require('path');
 
-const {Asset, Book, Coin, Key, Stock, User} = require('./models');
+const {Asset, Book, Coin, Key, Stock, User, Schedule} = require('./models');
 const {encryptPassword, setAuth} = require('./utils');
 
 const app = express();
@@ -19,9 +19,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', async(req, res)=> {
     // res.sendFile(__dirname + "\\public\\index.html");
-    
+    // res.sendFile(path.join(__dirname, ))
     fs.readFile(__dirname+"\\public\\index.html", (err, data) => {
-        console.log('terminal')
+        
         if(err){
             console.log('error occured at url \'/\'.');
             res.status(404).send('Not Found');
@@ -29,6 +29,7 @@ app.get('/', async(req, res)=> {
             console.log("Requesting url '/'.");
             res.end(data);
         }
+        console.log('terminal')
     });
 })
 
@@ -43,6 +44,21 @@ app.get('/:month', async(req, res) => {
     })
 })
 
+
+
+
+
+// Book create
+app.post('/books/create', setAuth, async(req, res) => {
+    const user = req.user;
+    const {title, author, quote, genre, page, rating} = req.body
+    const book = new Book({
+        title, author, quote, genre, page, user, rating,
+    });
+    await book.save();
+    res.send(book);
+})
+// Books read
 app.get('/books', setAuth, async(req, res) => {
     const user = req.user;
     try{
@@ -53,40 +69,77 @@ app.get('/books', setAuth, async(req, res) => {
     const booksjson = {bookstitle, booksAuthor, booksQuote};  
     res.send(booksjson);
     } catch(err){
-        return res.status(400).send({error: 'Error occured when updating maps. Tell to admin'});
+        return res.status(400).send({error: 'Error occured when updating books.'});
     }
-})
+});
+// Book read
 app.get('/books/:book', setAuth, async(req, res) => {
     const user = req.user;
     const {bookTitle} = req.params;
     try{
-        const book = await Book.find({user, title:bookTitle});
+        const book = await Book.findOne({user, title:bookTitle});
         const {title, author, quote, genre, page, rating} = book;
         res.send({title, author, quote, genre, page, rating});
     } catch(err){
         return res.status(400).send({error : 'Error found when showing the book. Ask admin.'});
     }
 })
-
-
-
-
-
-app.post('/books/create', setAuth, async(req, res) => {
+// Book update
+app.put('/books/:book', setAuth, async(req, res) => {
     const user = req.user;
-    const {title, author, quote, genre, page, rating} = req.body
-    const book = new Book({
-        title : title,
-        author : author,
-        quote : quote,
-        genre : genre, 
-        page : page, 
-        user : user,
-        rating : rating
-    });
-    await book.save();
-    res.send(book);
+    const {bookTitle} = req.params;
+    const {title, author, quote, genre, page, rating} = req.body;
+    const _book = await Book.findOne({user, title:bookTitle});
+    
+    _book.title = title;
+    _book.author = author;
+    _book.quote = quote;
+    _book.genre = genre;
+    _book.page = page;
+    _book.rating = rating;
+    await _book.save();    
+
 })
+// Book delete
+app.delete('/books/:book', setAuth, async(req, res) => {
+    const user = req.user;
+    const {bookTitle} = req.params;
+    const _book = await Book.findOne({user, title : bookTitle});
+    await Book.deleteOne({user, title:bookTitle});
+    res.send(_book);
+})
+// Book done by now ; 
+
+// Schedule create
+app.post('/schedules/create', setAuth, async(req, res) => {
+    const user = req.user;
+    const {date, title, description} = req.body;
+    const schedule = new Schedule({
+        date, title, description, user, isDone, 
+    });
+    await schedule.save();
+    res.send(schedule);
+})
+// Schedules read
+app.get('/schedules', setAuth, async(req, res) => {
+    const user = req.user;
+    try{
+    const schedules = await Schedule.find({user});
+    const dates = schedules.map(e => e.date); 
+    const descriptions = schedules.map(e => e.description);
+    const isDones = schedules.map(e => e.isDone);
+    const schedulesJson = {dates, descriptions, isDones};  
+    res.send(schedulesJson);
+    } catch(err){
+        return res.status(400).send({error: 'Error occured when updating books.'});
+    }
+});
+
+
+
+
+
+
 
 app.get('/portfolio', setAuth, async(req, res) => {
     const user = req.user;

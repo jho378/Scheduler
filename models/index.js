@@ -6,6 +6,7 @@ const Coin = require('./Coin');
 const Key = require('./Key');
 const Stock = require('./Stock');
 const User = require('./User');
+const Schedule = require('./Schedule');
 
 const mongoURL = 'mongodb://admin:wlsgh741@calendar-shard-00-00.pfpok.mongodb.net:27017,calendar-shard-00-01.pfpok.mongodb.net:27017,calendar-shard-00-02.pfpok.mongodb.net:27017/calendarServer?ssl=true&replicaSet=atlas-nlsbae-shard-0&authSource=admin&retryWrites=true&w=majority';
 mongoose.connect(mongoURL);
@@ -18,4 +19,5 @@ module.exports = {
     Key,
     Stock,
     User,
+    Schedule,
 }

@@ -14,7 +14,7 @@ const setAuth = async(req, res, next) => {
     if(decodedJwt === null) return res.status(400).send({error : 'Invalied Key'});
     const _pub = decodedJwt.publicKey;
     const _key = await Key.findOne({publicKey : _pub});
-    let uesr = null;
+    let user = null;
     try{
         console.log('verifying');
         const verified = jwt.verify(key, _key.secretKey);
