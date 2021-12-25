@@ -9,6 +9,7 @@ const bookSchema = new Schema({
     page : Number, 
     rating : {type : Number, min:0, max:10},  
     user : {type : Schema.Types.ObjectId, ref : 'Book'}, 
+    isDeleted : {type : Boolean, default : false},
 })
 
 const Book = mongoose.model('Book', bookSchema);
