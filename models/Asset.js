@@ -11,6 +11,7 @@ const assetSchema = new Schema({
     currentPrice : Number,
     balance : Number,
     user : {type : Schema.Types.ObjectId, ref:'user'},
+    isDeleted : {type : Boolean, default : false},
 })
 
 assetSchema.index({name:1, user:1}, {unique : true});

@@ -8,6 +8,7 @@ const userSchema = new Schema({
     keys : [{type : Schema.Types.ObjectId, ref : 'Key'}],
     assets : [{type : Schema.Types.ObjectId, ref : 'Asset'}],
     books : [{type : Schema.Types.ObjectId, ref : 'Book'}],
+    isDeleted : {type : Boolean, default : false}, 
 })
 
 

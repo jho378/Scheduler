@@ -5,7 +5,9 @@ const scheduleSchema = new Schema({
     title : String,
     description : String,
     user : {type: Schema.Types.ObjectId, ref :'user'},
+    id : Number,
     isDone : {type : Boolean, default : false},
+    isDeleted : {type : Boolean, default : false},
 }) 
 
 
