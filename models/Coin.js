@@ -5,6 +5,7 @@ const coinSchema = new Schema({
     name : {type:String, unique:true},
     sector : String,
     industry : String,
+    assetType : String,
     isActive : Boolean,
 })
 

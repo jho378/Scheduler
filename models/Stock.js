@@ -7,6 +7,7 @@ const stockSchema = new Schema({
     sector : String,
     industry : String,
     isActive : Boolean,
+    assetType : String,
 })
 
 

@@ -6,12 +6,13 @@ const assetSchema = new Schema({
     ticker : String,
     sector : String,
     industry : String,
-    dateOfPurchase : {type : Date, default : Date.now},
-    purchasePrice : Number,
-    currentPrice : Number,
+    // dateOfPurchase : {type : Date, default : Date.now},
+    averagePrice : Number,
+    // purchasePrice : Number,
+    // currentPrice : Number,
     balance : Number,
+    assetType : String,
     user : {type : Schema.Types.ObjectId, ref:'user'},
-    isDeleted : {type : Boolean, default : false},
 })
 
 assetSchema.index({name:1, user:1}, {unique : true});
