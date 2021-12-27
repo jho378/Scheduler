@@ -12,7 +12,7 @@ const assetSchema = new Schema({
     // currentPrice : Number,
     balance : Number,
     assetType : String,
-    user : {type : Schema.Types.ObjectId, ref:'user'},
+    user : {type : Schema.Types.ObjectId, ref:'User'},
 })
 
 assetSchema.index({name:1, user:1}, {unique : true});
