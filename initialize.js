@@ -17,6 +17,7 @@ const init = async() => {
     await User.deleteMany();
     await Schedule.deleteMany();    
     fs.writeFileSync('./datas/stocks.json', JSON.stringify([]));
+    fs.writeFileSync('./datas/coins.json', JSON.stringify([]));
     const coins = ['bitcoin', 'ethereum', 'dogecoin', 'ripple', 'solana'];
     const stocks = ['COST', 'MSFT', 'GOOG', 'AMZN', 'TSLA', 'NKE', 'IONQ', 'PLTR', 'SBUX', 'AAPL', 'KO', 'JPM','BRK-B', 'AXP', 'O', 'PG', 'ABNB'];
     // maybe add ETF later;
@@ -24,6 +25,10 @@ const init = async() => {
     
     for(const _coin of coins){
         const coin = new Coin({name : _coin, sector: 'Crypto', industry : 'Crypto', assetType : 'cryptocoin', isActive : true});
+        let coinsJson = fs.readFileSync('./datas/coins.json').toString();
+        coinsJson = JSON.parse(coinsJson);
+        coinsJson.push({name : _coin, sector : 'Crypto', industry : 'Crypto'});
+        fs.writeFileSync('./datas/coins.json', JSON.stringify(coinsJson));
         await coin.save();
     }
     console.log('coins initialization completed');
