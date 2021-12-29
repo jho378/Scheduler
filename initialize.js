@@ -6,7 +6,7 @@ const {Asset, Book, Coin, Key, Stock, User, Schedule} = require('./models');
 const {getMainHTML, parsing, getSubHTML, subParsing} = require('./utils');
 let start = 0;
 let end = 0;
-
+// this is for test
 const init = async() => {
     start = new Date();
     await Asset.deleteMany();
