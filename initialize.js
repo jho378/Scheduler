@@ -2,7 +2,7 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const fs = require('fs');
 
-const {Asset, Book, Coin, Key, Stock, User, Schedule} = require('./models');
+const {Asset, Book, Coin, Key, Stock, User, Schedule, Workout} = require('./models');
 const {getMainHTML, parsing, getSubHTML, subParsing} = require('./utils');
 let start = 0;
 let end = 0;
@@ -16,10 +16,35 @@ const init = async() => {
     await Stock.deleteMany();
     await User.deleteMany();
     await Schedule.deleteMany();    
+    await Workout.deleteMany();
     fs.writeFileSync('./datas/stocks.json', JSON.stringify([]));
     fs.writeFileSync('./datas/coins.json', JSON.stringify([]));
+    fs.writeFileSync('./datas/workouts.json', JSON.stringify([]));
     const coins = ['bitcoin', 'ethereum', 'dogecoin', 'ripple', 'solana'];
     const stocks = ['COST', 'MSFT', 'GOOG', 'AMZN', 'TSLA', 'NKE', 'IONQ', 'PLTR', 'SBUX', 'AAPL', 'KO', 'JPM','BRK-B', 'AXP', 'O', 'PG', 'ABNB'];
+   
+    const chest = ['Bench press', 'Incline bench press', 'Dumbell bench press', 'Incline dumbell press', 'Dips', 'Dumbell fly', 'Cable crossover', 'Pec deck fly', 'Push-up', 'Incline Dumbell fly', 'Dumbell pullover'];
+    const back = ['Pull-up', 'Barbell row', 'Dumbell row', 'Seated row', 'Lat pulldown', 'Chin-up', 'Deadlift', 'One arm dumbell row', 'Back extension'];
+    const shoulder = ['Overhead dumbell press', 'Overhead barbell press', 'Side lateral raise', 'Front raise', 'Behind neck press', 'Bentover dumbell lateral raise', 'Rear deltoid fly'];
+    const arms = ['Dumbell curl', 'Dumbell hammer curl', 'Barbell curl', 'triceps dumbell extension', 'Dumbell kickback', 'Cable pushdown', 'Close grip push-up', 'Barbell preacher curl', 'Close grip bench press'];
+    const abs = ['Sit up', 'Leg raise', 'Plank', 'Crunch', 'V-up', 'Hanging leg raise'];
+    const legs = ['Leg curl', 'Leg extension', 'Conventional deadift', 'Squats', 'Leg press', 'Hip abduction', 'Hip deduction'];
+    const cardio = ['Treadmill', 'Cycle', 'Rowing machine'];
+    const workouts = [chest, back, shoulder, arms, abs, legs, cardio];
+
+    const strWorkouts = ['chest', 'back', 'shoulder', 'arms', 'abs', 'legs', 'cardio'];
+    workouts.forEach((part, idx) => {
+        part.forEach(async exer => {
+            const workout = new Workout({name : exer, part : strWorkouts[idx], weight : 1, set : 1, rep : 1, id : 0});
+            console.log(workout)
+            await workout.save();
+            let workoutData = fs.readFileSync('./datas/workouts.json').toString();
+            workoutData = JSON.parse(workoutData);
+            workoutData.push({name : exer, part : strWorkouts[idx]})
+            fs.writeFileSync('./datas/workouts.json', JSON.stringify(workoutData));
+        })
+    })
+    console.log('workouts initialization completed');
     // maybe add ETF later;
     // https://companiesmarketcap.com/assets-by-market-cap/
     
@@ -58,6 +83,8 @@ const init = async() => {
     })
     
     console.log('stocks initialization completed');   
+
+    
     end = new Date(); 
     console.log(end - start);
 }
