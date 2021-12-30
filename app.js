@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const path = require('path');
 
-const {Asset, Book, Coin, Key, Stock, User, Schedule} = require('./models');
+const {Asset, Book, Coin, Key, Stock, User, Schedule, Workout} = require('./models');
 const {getMainHTML, parsing, getSubHTML, subParsing ,encryptPassword, setAuth} = require('./utils');
 const app = express();
 const port = 3000;
@@ -40,7 +40,7 @@ app.use('/assets', require('./routes/assets'));
 // })
 
 app.get('/:month', async(req, res) => {
-    fs.readFile(__dirname + "\\public\\index.html", (err, data) => {
+    fs.readFile(__dirname + "/public/index.html", (err, data) => {
         if(err){
             console.log('error occured at path /:month');
             res.status(400).send('Invalid Month');

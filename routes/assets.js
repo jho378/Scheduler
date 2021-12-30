@@ -15,7 +15,7 @@ router.get('/', setAuth, async(req, res) => {
     const _coins = assets.filter(e => e.balance!==0 && e.assetType === 'cryptocoin');
     const assetsObj = {};
     _assets.forEach(e => assetsObj[e.name] = e.balance);
-    res.send(_assets, _stocks, _coins);
+    res.send({_assets, _stocks, _coins});
 });
 
 // creating stocks

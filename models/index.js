@@ -6,6 +6,7 @@ const Key = require('./Key');
 const Stock = require('./Stock');
 const User = require('./User');
 const Schedule = require('./Schedule');
+const Workout = require('./Workout');
 
 require('dotenv').config();
 
@@ -22,4 +23,5 @@ module.exports = {
     Stock,
     User,
     Schedule,
+    Workout,
 }

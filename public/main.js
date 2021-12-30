@@ -54,6 +54,7 @@ const renderCalendar = () => {
     }
 }
 
+// 이걸 아마도 main.js에서 처리하면 안되고 나중에 import해서 처리해야 하는 모양이에요 
 const URLSearch = location.pathname.split('/');
 
 if(URLSearch[1].length===0){
