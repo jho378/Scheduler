@@ -90,12 +90,11 @@ a {
     border-right : 1px solid #333333;
 }
 .date{
-    width : 196.8px;
-    
+    width : 13.8%;
     padding : 0px;
+    flex-grow:1;
     font-size:20px;
     text-align:left;
-    padding:1px;
     border-bottom:1px solid #333333;
     border-left:1px solid #333333;
 }
@@ -212,7 +211,6 @@ label{
         padding : 0px;
         font-size:20px;
         text-align:left;
-        padding:1px;
         border-bottom:1px solid #333333;
         border-left:1px solid #333333;
     }
@@ -279,7 +277,6 @@ label{
         padding : 0px;
         font-size:20px;
         text-align:left;
-        padding:1px;
         border-bottom:1px solid #333333;
         border-left:1px solid #333333;
     }
