@@ -40,7 +40,7 @@ router.route('/:title')
             return res.status(400).send({error : 'Error found when accessing to the bucketlist'});
         }
     })
-    .put(setAuth, async(res, res) => {
+    .put(setAuth, async(req, res) => {
         const user = req.user;
         const {bucketlistTitle} = req.params;
         const {title, description, isDone} = req.body;
