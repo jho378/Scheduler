@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
+
 const Asset = require('./Asset');
 const Book = require('./Book');
+const Bucketlist = require('./Bucketlist');
 const Coin = require('./Coin');
 const Key = require('./Key');
 const Stock = require('./Stock');
@@ -18,6 +20,7 @@ if(mongoose.connect(mongoURL))  console.log('connected to DB');
 module.exports = {
     Asset,
     Book,
+    Bucketlist,
     Coin,
     Key,
     Stock,

@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const path = require('path');
 
-const {Asset, Book, Coin, Key, Stock, User, Schedule, Workout} = require('./models');
+const {Asset, Book, Coin, Key, Stock, User, Schedule, Workout, Bucketlist} = require('./models');
 const {getMainHTML, parsing, getSubHTML, subParsing ,encryptPassword, setAuth} = require('./utils');
 const app = express();
 const port = 3000;
@@ -22,6 +22,8 @@ app.use('/login', require('./routes/login'));
 app.use('/books', require('./routes/books'));
 app.use('/schedules', require('./routes/schedules'));
 app.use('/assets', require('./routes/assets'));
+app.use('/workouts', require('./routes/workouts'));
+app.use('/bucketlists', require('./routes/bucketlists'));
 
 // app.get('/', async(req, res)=> {
 //     // res.sendFile(__dirname + "\\public\\index.html");
