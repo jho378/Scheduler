@@ -36,7 +36,6 @@ const init = async() => {
     workouts.forEach((part, idx) => {
         part.forEach(async exer => {
             const workout = new Workout({name : exer, part : strWorkouts[idx], weight : 1, set : 1, rep : 1, id : 0});
-            console.log(workout)
             await workout.save();
             let workoutData = fs.readFileSync('./datas/workouts.json').toString();
             workoutData = JSON.parse(workoutData);
