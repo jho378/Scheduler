@@ -12,7 +12,7 @@ router.post('/create', setAuth, async(req, res) => {
         title, author, quote, genre, page, user, rating, isDeleted : false
     });
     await book.save();
-    return res.send(book);
+    return res.send({book});
 })
 
 // reading entire book history
@@ -24,7 +24,7 @@ router.get('/', setAuth, async(req, res) => {
     const booksAuthor = books.map(e => e.author);
     const booksQuote = books.map(e => e.quote);
     const booksjson = {bookstitle, booksAuthor, booksQuote};  
-    return res.send(booksjson);
+    return res.send({booksjson});
     } catch(err){
         return res.status(400).send({error: 'Error occured when updating books.'});
     }
@@ -49,26 +49,26 @@ router.route('/:book')
         const user = req.user;
         const {bookTitle} = req.params;
         const {title, author, quote, genre, page, rating} = req.body;
-        const _book = await Book.findOne({user, title:bookTitle, isDeleted : false});
+        const book = await Book.findOne({user, title:bookTitle, isDeleted : false});
         
-        _book.title = title;
-        _book.author = author;
-        _book.quote = quote;
-        _book.genre = genre;
-        _book.page = page;
-        _book.rating = rating;
-        await _book.save();
-        return res.send(_book);
+        book.title = title;
+        book.author = author;
+        book.quote = quote;
+        book.genre = genre;
+        book.page = page;
+        book.rating = rating;
+        await book.save();
+        return res.send({book});
     })
     // deleting a single book
     .delete(setAuth, async(req, res) =>{
         const user = req.user;
         const {bookTitle} = req.params;
-        const _book = await Book.findOne({user, title : bookTitle, isDeleted : false});
+        const book = await Book.findOne({user, title : bookTitle, isDeleted : false});
         
-        _book.isDeleted = true;
-        await _book.save();
-        return res.send(_book);
+        book.isDeleted = true;
+        await book.save();
+        return res.send({book});
 });
 
 module.exports =router;
