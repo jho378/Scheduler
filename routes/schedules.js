@@ -7,10 +7,10 @@ const {Schedule, User} = require('../models')
 // creating a schedule
 router.post('/create', setAuth, async(req, res) => {
     const user = req.user;
-    const {date, title, description} = req.body;
+    const {date, title, description, period} = req.body;
     const id = await Schedule.countDocuments({user}) + 1;
     const schedule = new Schedule({
-        date, title, description, user, id, isDone : false, isDeleted : false,
+        date, title, description, user, period, id, isDone : false, isDeleted : false,
     });
     await schedule.save();
     return res.send(schedule);
@@ -36,8 +36,8 @@ router.route('/:id')
         const {scheduleId} = req.params;
         try{
             const schedule = await Schedule.findOne({user, id:parseInt(scheduleId), isDeleted : false,});
-            const {date, title, description, user, id, isDone} = schedule;
-            return res.send({date, title, description, user, id, isDone});
+            const {date, title, description, user, period, id, isDone} = schedule;
+            return res.send({date, title, description, user, period, id, isDone});
         } catch(err){
             return res.status(400).send({error : 'Error found when showing the book. Ask admin.'});
         }
@@ -46,26 +46,27 @@ router.route('/:id')
     .put(setAuth, async(req, res)=> {
         const user = req.user;
         const {scheduleId} = req.params;
-        const {date, title, description, isDone} = req.body;
-        const _schedule = await Schedule.findOne({user, id : parseInt(scheduleId), isDeleted: false});
+        const {date, title, description, period, isDone} = req.body;
+        const schedule = await Schedule.findOne({user, id : parseInt(scheduleId), isDeleted: false});
 
-        _schedule.date = date;
-        _schedule.title = title;
-        _schedule.description = description;
-        _schedule.isDone = isDone;
-        await _schedule.save();
-        return res.send(_schedule);
+        schedule.date = date;
+        schedule.title = title;
+        schedule.description = description;
+        schedule.period = period;
+        schedule.isDone = isDone;
+        await schedule.save();
+        return res.send({schedule});
     })
     // deleting a schedule 
     .delete(setAuth, async(req, res) => {
         const user = req.user;
         const {scheduleId} = req.params;
-        const _schedule = await Schedule.findOne({user, id : parseInt(scheduleId), isDeleted:false});
+        const schedule = await Schedule.findOne({user, id : parseInt(scheduleId), isDeleted:false});
         
-        _schedule.isDeleted = true;
-        await _schedule.save();
+        schedule.isDeleted = true;
+        await schedule.save();
         // id 순서 다시 바꿔주는 로직!
-        return res.send(_schedule);
+        return res.send(schedule);
     });
     
 module.exports = router;
