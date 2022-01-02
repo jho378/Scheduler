@@ -2,7 +2,7 @@ const express = require('express');
 const fs = require('fs');
 const router = express.Router();
 
-const { setAuth } = require('../utils');
+const { parsing, subParsing, setAuth} = require('../utils');
 const {Asset, Coin, Stock, User} = require('../models')
 
 
@@ -19,15 +19,17 @@ router.get('/', setAuth, async(req, res) => {
 });
 
 // creating stocks
-router.put('/stock/:stock/add', setAuth, async(req, res) => {
+router.put('/stock/:ticker/add', setAuth, async(req, res) => {
     const user = req.user;
     const {ticker} = req.params;
-    await parsing(ticker);
-    await subParsing(ticker);
     
-    let stocksData = fs.readFileSync('../datas/stocks.json').toString();
+    await parsing(ticker);
+    console.log('parsing done');
+    await subParsing(ticker);
+    console.log('subparsing done');
+    
+    let stocksData = fs.readFileSync('./datas/stocks.json').toString();
     stocksData = JSON.parse(stocksData);
-
     const stock = new Stock({
         name : stocksData[stocksData.length -1].name,
         ticker : stocksData[stocksData.length -1].ticker,
@@ -37,7 +39,7 @@ router.put('/stock/:stock/add', setAuth, async(req, res) => {
         isActive : true
     })
     await stock.save();
-
+    console.log(`${ticker} added in database`);
     const users = await User.find({isDeleted : false});
     for(const _user of users){
         const asset = new Asset({
@@ -60,9 +62,9 @@ router.put('/coin/:coinName/add', setAuth, async(req, res) => {
     const user = req.user;
     const {coinName} = req.params;
 
-    let coinsData = fs.readFileSync('../datas/coins.json').toString();
+    let coinsData = fs.readFileSync('./datas/coins.json').toString();
     coinsData = JSON.parse(coinsData);
-    
+    try{
     const coin = new Coin({
         name : coinName,
         sector: 'Crypto', 
@@ -70,10 +72,9 @@ router.put('/coin/:coinName/add', setAuth, async(req, res) => {
         assetType : 'cryptocoin', 
     })
     coinsData.push({name : coinName, sector : 'Crypto', industry : 'Crypto'})
-    fs.writeFileSync('../datas/coins.json', JSON.stringify(coinsData));
-    await Coin.save();
-    
+    fs.writeFileSync('./datas/coins.json', JSON.stringify(coinsData));
 
+    await coin.save();
     const users = await User.find({isDeleted : false});
     for(const _user of users){
         const asset = new Asset({
@@ -86,86 +87,99 @@ router.put('/coin/:coinName/add', setAuth, async(req, res) => {
             user : _user,
         })
         await asset.save();
+        return res.send({coin, coinName});
+    }}   catch(err){
+        return res.status(400).send({error : `The coin with the name '${coinName}' already exists.`})
     }
-    return res.send({coin, coinName});
 })
 
 // buying stocks
-router.post('/stock/:stock/buy', setAuth, async(req, res)=>{
+router.post('/stock/:ticker/buy', setAuth, async(req, res)=>{
     const user = req.user;
     const {ticker} = req.params;
-    const {purchasePrice, quantity} = req.body;
+    const purchasePrice = Number(req.body.purchasePrice);
+    const quantity = Number(req.body.quantity);
+    
     const asset = await Asset.findOne({user, ticker});
 
     const {averagePrice, balance} = asset;
-    asset.averagePrice = balance*averagePrice+quantity*purchasePrice/(balance + quantity);
+    asset.averagePrice = (balance*averagePrice+quantity*purchasePrice)/(balance + quantity);
     asset.balance += quantity;
     await asset.save();
     
-    let stockHistoryData = fs.readFileSync('../datas/stocksHistory.json').toString();
+    let stockHistoryData = fs.readFileSync('./datas/stocksHistory.json').toString();
     stockHistoryData = JSON.parse(stockHistoryData);
     stockHistoryData.push({
         ticker, purchasePrice, quantity, dateOfPurchase : new Date(), user, 
     })
-    fs.writeFileSync('../datas/stocksHistory.json', JSON.stringify(stockHistoryData));
+    fs.writeFileSync('./datas/stocksHistory.json', JSON.stringify(stockHistoryData));
     return res.send({asset, purchasePrice, quantity});
 })
 
 router.post('/coin/:coinName/buy', setAuth, async(req, res) => {
     const user = req.user;
     const {coinName} = req.params;
-    const {purchasePrice, quantity} = req.body;
-    const asset = await Asset.findOne({user, coinName});
 
+    const purchasePrice = Number(req.body.purchasePrice);
+    const quantity = Number(req.body.quantity);
+    
+    const asset = await Asset.findOne({user, name : coinName});
+    console.log(asset);
     const {averagePrice, balance} = asset;
-    asset.averagePrice = balance*averagePrice + quantity*purchasePrice / (balance + quantity);
+    asset.averagePrice = (balance*averagePrice + quantity*purchasePrice) / (balance + quantity);
     asset.balance += quantity;
     await asset.save();
 
-    let coinHistoryData = fs.readFileSync('../datas/coinsHistory.json').toString();
+    let coinHistoryData = fs.readFileSync('./datas/coinsHistory.json').toString();
     coinHistoryData = JSON.parse(coinHistoryData);
     coinHistoryData.push({
-        name : coinName, purchasePrice, quantity, dataOfPurchase : new Data(), user,
+        name : coinName, purchasePrice, quantity, dataOfPurchase : new Date(), user,
     });
-    fs.writeFileSync('../datas/coinsHistory.json', JSON.stringify(coinHistoryData));
+    fs.writeFileSync('./datas/coinsHistory.json', JSON.stringify(coinHistoryData));
     return res.send({asset, purchasePrice, quantity});
 s})
 
 // selling stocks
-router.post('/stock/:stock/sell', setAuth, async(req, res)=>{
+router.post('/stock/:ticker/sell', setAuth, async(req, res)=>{
     const user = req.user;
     const {ticker} =req.params;
-    const {sellPrice, quantity} = req.body;
+    const sellPrice = Number(req.body.sellPrice);
+    const quantity = Number(req.body.quantity);
+    
     const asset = await Asset.findOne({user, ticker});
-    const {balance} = asset;
+    const {balance, averagePrice} = asset;
     if(balance-quantity<0)  return res.status(400).send({error: 'You don\'t have enough stocks.'});
     else asset.balance -= quantity;
     await asset.save();
-    let stockHistoryData = fs.readFileSync('../datas/stocksHistory.json').toString();
+    let stockHistoryData = fs.readFileSync('./datas/stocksHistory.json').toString();
     stockHistoryData = JSON.parse(stockHistoryData);
     stockHistoryData.push({
         ticker, sellPrice, quantity, dateOfSell : new Date(), user, 
     });
-    fs.writeFileSync('../datas/stocksHistory.json', JSON.stringify(stockHistoryData));
+    fs.writeFileSync('./datas/stocksHistory.json', JSON.stringify(stockHistoryData));
     return res.send({asset, sellPrice, quantity, averagePrice});
 })
 
 router.post('/coin/:coinName/sell', setAuth, async(req, res)=> {
     const user = req.user;
     const {coinName} = req.params;
-    const {sellPrice, quantity} = req.body;
-    const asset = await Asset.findOne({user, coinName});
-    const {balance} = asset;
+
+    const sellPrice = Number(req.body.sellPrice);
+    const quantity = Number(req.body.quantity);
+    
+    const asset = await Asset.findOne({user, name :coinName});
+    if(!asset)  return res.status(404).send({error : `There is no such coin '${coinName}'`});
+    const {balance, averagePrice} = asset;
     if(balance-quantity<0)  return res.status(400).send({error : 'You dont\'t have enough coins.'});
     else asset.balance -= quantity;
     await asset.save();
     
-    let coinHistoryData = fs.readFileSync('../datas/coinsHistory.json').toString();
+    let coinHistoryData = fs.readFileSync('./datas/coinsHistory.json').toString();
     coinHistoryData = JSON.parse(coinHistoryData);
     coinHistoryData.push({
         name : coinName, sellPrice, quantity, dataOfSell : new Date(), user,
     })
-    fs.writeFileSync('../data/coinsHistory.json', JSON.stringify(coinHistoryData));
+    fs.writeFileSync('./datas/coinsHistory.json', JSON.stringify(coinHistoryData));
     return res.send({asset, sellPrice, quantity, averagePrice})
 })
 
