@@ -19,8 +19,8 @@ router.post('/', async(req, res) => {
     const key = new Key({publicKey : pub, secretKey : sec, user, isActive : true});
     await key.save();
     
-    const {schedules, assets} = user;
-    const userInfo = {schedules, assets};
+    const {schedules} = user;
+    const userInfo = {schedules};
     return res.send({userInfo, publicKey : key.publicKey, secretKey : key.secretKey});
 })
 
