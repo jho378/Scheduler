@@ -33,7 +33,7 @@ router.get('/', setAuth, async(req, res) => {
     }
 })
 
-router.route('/:workoutId')
+router.route('/:id')
     .get(setAuth, async(req, res) => {
         const user = req.user;
         const {id} = req.params;
