@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { setAuth } = require('../utils');
 const {Bucketlist, User} = require('../models')
-
+const fs = require('fs');
 
 // creating a bucketlist
 router.post('/create', setAuth, async(req, res) => {
@@ -17,12 +17,20 @@ router.post('/create', setAuth, async(req, res) => {
 });
 
 router.get('/', setAuth, async(req, res) => {
+
     const user = req.user;
     try{
         const bucketlists = await Bucketlist.find({user});
         const titles = bucketlists.map(e => e.title);
         const isDones = bucketlists.map(e => e.isDone);
-        return res.send({titles, isDones});
+        fs.readFile("./public/bucketlist.html", (err, data) => {
+            if(err){
+                console.error(err);
+                res.status(400).send('Invalid URI');
+            }   else{
+                res.send(data, titles, isDones);
+            }
+        })
     }   catch(err){
         return res.status(400).send({error : 'Cannot get access to bucketlists.'});
     }
