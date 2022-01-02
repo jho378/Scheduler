@@ -28,7 +28,7 @@ router.get('/', setAuth, async(req, res) => {
     }
 });
 
-router.route('/:title')
+router.route('/:bucketlisttitle')
     .get(setAuth, async(req, res)=> {
         const user = req.user;
         const {bucketlistTitle} = req.params;
