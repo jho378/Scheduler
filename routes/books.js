@@ -23,7 +23,8 @@ router.get('/', setAuth, async(req, res) => {
     const bookstitle = books.map(e => e.title); 
     const booksAuthor = books.map(e => e.author);
     const booksQuote = books.map(e => e.quote);
-    const booksjson = {bookstitle, booksAuthor, booksQuote};  
+    const bookPage = books.map(e => e.page);
+    const booksjson = {bookstitle, booksAuthor, booksQuote, bookPage};  
     return res.send({booksjson});
     } catch(err){
         return res.status(400).send({error: 'Error occured when updating books.'});
@@ -31,7 +32,7 @@ router.get('/', setAuth, async(req, res) => {
 });
 
 
-router.route('/:book')
+router.route('/:bookTitle')
     // getting a single book
     .get(setAuth, async(req, res) => {
         const user = req.user;
