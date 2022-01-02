@@ -30,7 +30,7 @@ async(req, res) => {
     try{
         user = new User({
         id,
-        password,
+        password : encryptedPassword,
         username,
         isDeleted : false,
     });
