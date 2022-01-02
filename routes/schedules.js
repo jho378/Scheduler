@@ -21,22 +21,22 @@ router.get('/', setAuth, async(req, res) =>{
     try{
     const schedules = await Schedule.find({user, isDeleted : false});
     const dates = schedules.map(e => e.date); 
-    const descriptions = schedules.map(e => e.description);
+    const titles = schedules.map(e => e.title);
     const isDones = schedules.map(e => e.isDone);
-    const schedulesJson = {dates, descriptions, isDones};  
+    const schedulesJson = {dates, titles, isDones};  
     return res.send(schedulesJson);
     } catch(err){
         return res.status(400).send({error: 'Error occured when updating schedules.'});
     }
 })
-router.route('/:id')
+router.route('/:scheduleId')
     // reading a single schedule
     .get(setAuth, async(req,res) =>{
         const user = req.user;
         const {scheduleId} = req.params;
         try{
-            const schedule = await Schedule.findOne({user, id:parseInt(scheduleId), isDeleted : false,});
-            const {date, title, description, user, period, id, isDone} = schedule;
+            const schedule = await Schedule.findOne({user, id: parseInt(scheduleId), isDeleted : false,});
+            const {date, title, description, period, id, isDone} = schedule;
             return res.send({date, title, description, user, period, id, isDone});
         } catch(err){
             return res.status(400).send({error : 'Error found when showing the book. Ask admin.'});
