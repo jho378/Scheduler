@@ -3,7 +3,7 @@ const cheerio = require('cheerio');
 const fs = require('fs');
 
 const {Asset, Book, Coin, Key, Stock, User, Schedule, Workout} = require('./models');
-const {getMainHTML, parsing, getSubHTML, subParsing} = require('./utils');
+const {getHTML, parsing} = require('./utils');
 let start = 0;
 let end = 0;
 // this is for test
@@ -60,7 +60,6 @@ const init = async() => {
     for(const _stock of stocks){
         // try{
         await parsing(_stock);
-        await subParsing(_stock);
         // }   catch(err){
         //     console.log({error: 'Might have typed wrong ticker'});
         // }

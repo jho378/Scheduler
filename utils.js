@@ -33,17 +33,16 @@ const setAuth = async(req, res, next) => {
     return next();
 }
 
-
-const getMainHTML = async(ticker) => {
+const getHTML = async(ticker) => {
     try{
-        return await axios.get(`https://finance.yahoo.com/quote/${ticker}`);
+        return await axios.get(`https://finance.yahoo.com/quote/${ticker}/profile?p=${ticker}`);
     }   catch(err){
-        console.log({error : 'Error occured when parsing main html'});
+        console.log({error : 'Error occured when parsing sub html'});
     }
 }
 
 const parsing = async(ticker) => {
-    const html = await getMainHTML(ticker);
+    const html = await getSubHTML(ticker);
     const $ = cheerio.load(html.data);
     const $price = $("#quote-header-info");
     $price.each((idx, node) => {
@@ -55,19 +54,6 @@ const parsing = async(ticker) => {
         stocksJson.push({ticker : ticker, name : stockName});
         fs.writeFileSync('./datas/stocks.json', JSON.stringify(stocksJson));
     })
-}
-
-const getSubHTML = async(ticker) => {
-    try{
-        return await axios.get(`https://finance.yahoo.com/quote/${ticker}/profile?p=${ticker}`);
-    }   catch(err){
-        console.log({error : 'Error occured when parsing sub html'});
-    }
-}
-
-const subParsing = async(ticker) => {
-    const html = await getSubHTML(ticker);
-    const $ = cheerio.load(html.data);
     const $field = $(".asset-profile-container");
     $field.each((idx, node) => {
         const fieldText = $(node).text();
@@ -86,8 +72,6 @@ const subParsing = async(ticker) => {
 module.exports = {
     encryptPassword,
     setAuth, 
-    getMainHTML,
+    getHTML,
     parsing,
-    getSubHTML,
-    subParsing,
 }

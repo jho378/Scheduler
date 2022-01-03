@@ -2,7 +2,7 @@ const express = require('express');
 const fs = require('fs');
 const router = express.Router();
 
-const { parsing, subParsing, setAuth} = require('../utils');
+const {parsing, getHTML, setAuth} = require('../utils');
 const {Asset, Coin, Stock, User} = require('../models')
 
 
@@ -25,8 +25,6 @@ router.put('/stock/:ticker/add', setAuth, async(req, res) => {
     
     await parsing(ticker);
     console.log('parsing done');
-    await subParsing(ticker);
-    console.log('subparsing done');
     
     let stocksData = fs.readFileSync('./datas/stocks.json').toString();
     stocksData = JSON.parse(stocksData);
@@ -39,7 +37,7 @@ router.put('/stock/:ticker/add', setAuth, async(req, res) => {
         isActive : true
     })
     await stock.save();
-    console.log(`${ticker} added in database`);
+    console.log(`'${ticker}' added in database`);
     const users = await User.find({isDeleted : false});
     for(const _user of users){
         const asset = new Asset({
