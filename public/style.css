@@ -34,9 +34,13 @@ a {
     padding:8px 20px;
     font-size: 20px;
 }
-.navbar_menu li:hover{
+.navbar_menu li:hover, .navbar_logo a:hover{
     background-color:#d49466;
     border-radius: 4px;
+}
+.navbar_icons i:hover{
+    background-color:#d49466;
+    border-radius : 4px;
 }
 .navbar_icons{
     display:flex;
@@ -47,8 +51,18 @@ a {
 
 .navbar_icons li{
     padding: 8px 12px;
+    margin-left:5px;
 }
 
+.navbar_newcomer{
+    display:flex;
+    list-style:none;
+    color: white;
+}
+.navbar_newcomer li{
+    padding : 8px 12px;
+    margin-right : 20px;
+}
 .navbar_toggleBtn{
     position:absolute;
     right:32px;
@@ -56,6 +70,22 @@ a {
     color:#d49466;
     display:none;
 }
+#sign-in{
+    font-size:20px;
+}
+#create-account{
+    font-size:20px;
+    background-color:#d9ccbc;
+    border-radius : 6px;
+}
+#create-account a{
+    color : black;
+}
+#sign-up:hover, #login:hover{
+    background-color:#d49466;
+    border-radius : 4px;
+}
+
 /* 여기까지가 위에 navbar 꾸민것 */
 
 .calender{
@@ -137,6 +167,47 @@ a {
 
 /* 여기까지가 달력 본체 */
 
+/* 이 아래부터 bucketlist */
+.bucketlist{
+        width:1400px;
+        margin:auto;
+}
+.bucketlist_header{
+    display : flex;
+    flex-direction : row; 
+    justify-content : space-between;
+    align-items: center;
+    /* border-bottom : solid black 1px; */
+}
+.bucketlist_name{
+    color : #263343;
+    padding-top : 20px;
+    padding-left : 36%;
+    padding-bottom : 40px;
+    font-size:45px;
+}
+.create_btn{
+    width: 80px;
+    height:50px;
+    border: none;
+    border-radius:7px;
+    font-size :20px;
+    transition:ease-out 0.3s;
+    background-color: #263343;
+    color :white;
+    box-shadow : inset 0 0 0 0 white;
+}
+.create_btn:hover{
+    box-shadow: inset 80px 0 0 0 #d9ccbc;
+    cursor: pointer;
+    color : #263343;
+}
+.bucketlist_main{
+    width :1400px;
+    height : 2000px;
+    border : solid #263343 10px;
+}
+
 /* 여기까지가 위에 navbar 꾸민것 */
 
 /* 이 아래부터는 semantic ui Overriding하는것 */
@@ -157,7 +228,6 @@ progress {
 }
 progress::-webkit-progress-value{
     border : 0; 
-    
     border-radius: 20px;
     background:#263343;
 }
