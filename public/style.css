@@ -1,353 +1,354 @@
-*{
-    font-family : 'caveat'
+* {
+    font-family: 'caveat';
 }
 body {
     margin: 0;
-    min-width:1450px;
+    min-width: 1450px;
 }
 a {
-    text-decoration : none;
-    color : white;
+    text-decoration: none;
+    color: white;
 }
-.navbar{
-    display:flex;
-    justify-content : space-between;
-    align-items : center;
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     /* background-color: rgb(0, 51, 102); */
-    background-color:#263343;
+    background-color: #263343;
     padding: 8px 12px;
 }
-.navbar_logo{
+.navbar_logo {
     font-size: 24px;
-    color : white;
+    color: white;
 }
-.navbar_logo i{
+.navbar_logo i {
     color: #d49466;
 }
-.navbar_menu{
-    display:flex;
+.navbar_menu {
+    display: flex;
     list-style: none;
     padding-left: 0;
 }
 
-.navbar_menu li{
-    padding:8px 20px;
+.navbar_menu li {
+    padding: 8px 20px;
     font-size: 20px;
 }
-.navbar_menu li:hover, .navbar_logo a:hover{
-    background-color:#d49466;
+.navbar_menu li:hover,
+.navbar_logo a:hover {
+    background-color: #d49466;
     border-radius: 4px;
 }
-.navbar_icons i:hover{
-    background-color:#d49466;
-    border-radius : 4px;
+.navbar_icons i:hover {
+    background-color: #d49466;
+    border-radius: 4px;
 }
-.navbar_icons{
-    display:flex;
-    list-style:none;
-    color:white;
-    padding-left:0;
+.navbar_icons {
+    display: flex;
+    list-style: none;
+    color: white;
+    padding-left: 0;
 }
 
-.navbar_icons li{
+.navbar_icons li {
     padding: 8px 12px;
-    margin-left:5px;
+    margin-left: 5px;
 }
 
-.navbar_newcomer{
-    display:flex;
-    list-style:none;
+.navbar_newcomer {
+    display: flex;
+    list-style: none;
     color: white;
 }
-.navbar_newcomer li{
-    padding : 8px 12px;
-    margin-right : 20px;
+.navbar_newcomer li {
+    padding: 8px 12px;
+    margin-right: 20px;
 }
-.navbar_toggleBtn{
-    position:absolute;
-    right:32px;
-    font-size:24px;
-    color:#d49466;
-    display:none;
+.navbar_toggleBtn {
+    position: absolute;
+    right: 32px;
+    font-size: 24px;
+    color: #d49466;
+    display: none;
 }
-#sign-in{
-    font-size:20px;
+#sign-in {
+    font-size: 20px;
 }
-#create-account{
-    font-size:20px;
-    background-color:#d9ccbc;
-    border-radius : 6px;
+#create-account {
+    font-size: 20px;
+    background-color: #d9ccbc;
+    border-radius: 6px;
 }
-#create-account a{
-    color : black;
+#create-account a {
+    color: black;
 }
-#sign-up:hover, #login:hover{
-    background-color:#d49466;
-    border-radius : 4px;
+#sign-up:hover,
+#login:hover {
+    background-color: #d49466;
+    border-radius: 4px;
 }
 
 /* 여기까지가 위에 navbar 꾸민것 */
 
-.calender{
-    width:1400px;
-    margin:auto;
+.calender {
+    width: 1400px;
+    margin: auto;
 }
 .cal_header {
-    display : flex;
+    display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.cal_year-month{
-    font-size:35px;
+.cal_year-month {
+    font-size: 35px;
 }
-.mustdolist li{
+.mustdolist li {
     text-decoration: underline;
 }
-.days{
-    display:flex;
-    margin:25px 0 10px;
+.days {
+    display: flex;
+    margin: 25px 0 10px;
 }
-.day{
-    width : 200px;
-    font-size:20px;
-    text-align:center;
+.day {
+    width: 200px;
+    font-size: 20px;
+    text-align: center;
 }
-.dates{
-    display:flex;
-    flex-flow:row wrap;
-    height:700px;
-    border-top : 1px solid #333333;
-    border-right : 1px solid #333333;
+.dates {
+    display: flex;
+    flex-flow: row wrap;
+    height: 700px;
+    border-top: 1px solid #333333;
+    border-right: 1px solid #333333;
 }
-.date{
-    width : 13.8%;
-    padding : 0px;
-    flex-grow:1;
-    font-size:20px;
-    text-align:left;
-    border-bottom:1px solid #333333;
-    border-left:1px solid #333333;
+.date {
+    width: 13.8%;
+    padding: 0px;
+    flex-grow: 1;
+    font-size: 20px;
+    text-align: left;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid #333333;
 }
 
-.day:nth-child(7n+1),
-.date:nth-child(7n+1){
-    color:#D13E3E;
+.day:nth-child(7n + 1),
+.date:nth-child(7n + 1) {
+    color: #d13e3e;
 }
 
 .day:nth-child(7n),
-.date:nth-child(7n){
-    color:#396EE2;
+.date:nth-child(7n) {
+    color: #396ee2;
 }
 .other {
-    opacity: .3;
+    opacity: 0.3;
 }
-.planner{
-    display:flex;
+.planner {
+    display: flex;
 }
-.memo{
-    background-color: #E7EAD9;
+.memo {
+    background-color: #e7ead9;
 }
-.today{
-    position : relative;
-    color: #FFFFFF;
+.today {
+    position: relative;
+    color: #ffffff;
 }
-.today::before{
-    position : absolute;
-    top:50%;
-    left:70%;
+.today::before {
+    position: absolute;
+    top: 50%;
+    left: 70%;
     z-index: -1;
     display: block;
-    width : 15px;
+    width: 15px;
     height: 15px;
-    background-color : #d49466;
+    background-color: #d49466;
     border-radius: 50%;
-    transform : translate(-50%, -50%);
-    content : '';
+    transform: translate(-50%, -50%);
+    content: '';
 }
 
 /* 여기까지가 달력 본체 */
 
 /* 이 아래부터 bucketlist */
-.bucketlist{
-        width:1400px;
-        margin:auto;
+.bucketlist {
+    width: 1400px;
+    margin: auto;
 }
-.bucketlist_header{
-    display : flex;
-    flex-direction : row; 
-    justify-content : space-between;
+.bucketlist_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     /* border-bottom : solid black 1px; */
 }
-.bucketlist_name{
-    color : #263343;
-    padding-top : 20px;
-    padding-left : 36%;
-    padding-bottom : 40px;
-    font-size:45px;
+.bucketlist_name {
+    color: #263343;
+    padding-top: 20px;
+    padding-left: 36%;
+    padding-bottom: 40px;
+    font-size: 45px;
 }
-.create_btn{
+.create_btn {
     width: 80px;
-    height:50px;
+    height: 50px;
     border: none;
-    border-radius:7px;
-    font-size :20px;
-    transition:ease-out 0.3s;
+    border-radius: 7px;
+    font-size: 20px;
+    transition: ease-out 0.3s;
     background-color: #263343;
-    color :white;
-    box-shadow : inset 0 0 0 0 white;
+    color: white;
+    box-shadow: inset 0 0 0 0 white;
 }
-.create_btn:hover{
+.create_btn:hover {
     box-shadow: inset 80px 0 0 0 #d9ccbc;
     cursor: pointer;
-    color : #263343;
+    color: #263343;
 }
-.bucketlist_main{
-    width :1400px;
-    height : 2000px;
-    border : solid #263343 10px;
+.bucketlist_main {
+    width: 1400px;
+    height: 2000px;
+    border: solid #263343 10px;
 }
 
 /* 여기까지가 위에 navbar 꾸민것 */
 
 /* 이 아래부터는 semantic ui Overriding하는것 */
 
-.progress{
-    margin-top : 20px;
+.progress {
+    margin-top: 20px;
 }
 progress {
-    width:1400px;
-    height:30px;
+    width: 1400px;
+    height: 30px;
 }
 progress {
-    -webkit-appearance:none;
+    -webkit-appearance: none;
     appearance: none;
     border-radius: 20px;
-    background:white; 
- 
+    background: white;
 }
-progress::-webkit-progress-value{
-    border : 0; 
+progress::-webkit-progress-value {
+    border: 0;
     border-radius: 20px;
-    background:#263343;
+    background: #263343;
 }
-progress::-webkit-progress-bar{
-    border-radius:20px;
-    background-color:#eee;
+progress::-webkit-progress-bar {
+    border-radius: 20px;
+    background-color: #eee;
 }
-label{
-    font-size:25px;
-    display:flex;
-    flex-direction:row;
-    justify-content:space-between;
-}
-
-.progress div{
-    margin-bottom : 20px;
+label {
+    font-size: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-@media screen and (max-width:1400px){
-    .calender{
-        width:945px;
-        margin:auto;
+.progress div {
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 1400px) {
+    .calender {
+        width: 945px;
+        margin: auto;
     }
-    progress{
-        width:945px;
-        margin:auto;
+    progress {
+        width: 945px;
+        margin: auto;
     }
     .cal_header {
-        display : flex;
+        display: flex;
         justify-content: space-between;
         align-items: center;
     }
-    .days{
-        display:flex;
-        margin:25px 0 10px;
+    .days {
+        display: flex;
+        margin: 25px 0 10px;
     }
-    .day{
-        width : 135px;
-        font-size:20px;
-        text-align:center;
+    .day {
+        width: 135px;
+        font-size: 20px;
+        text-align: center;
     }
-    .dates{
-        display:flex;
-        flex-flow:row wrap;
-        height:472px;
-        border-top : 1px solid #333333;
-        border-right : 1px solid #333333;
+    .dates {
+        display: flex;
+        flex-flow: row wrap;
+        height: 472px;
+        border-top: 1px solid #333333;
+        border-right: 1px solid #333333;
     }
-    .date{
-        width : 131.85px;
-        padding : 0px;
-        font-size:20px;
-        text-align:left;
-        border-bottom:1px solid #333333;
-        border-left:1px solid #333333;
+    .date {
+        width: 131.85px;
+        padding: 0px;
+        font-size: 20px;
+        text-align: left;
+        border-bottom: 1px solid #333333;
+        border-left: 1px solid #333333;
     }
 }
-@media screen and (max-width:768px){
+@media screen and (max-width: 768px) {
     .navbar {
-        flex-direction:column;
+        flex-direction: column;
         align-items: flex-start;
-        padding:8px 24px;
+        padding: 8px 24px;
     }
-    .navbar_menu{
-        display:none;
-        flex-direction:column;
+    .navbar_menu {
+        display: none;
+        flex-direction: column;
         align-items: center;
-        width:100%;
+        width: 100%;
     }
-    .navbar_menu li{
-        width:100%;
-        text-align:center;
+    .navbar_menu li {
+        width: 100%;
+        text-align: center;
     }
-    .navbar_icons{
-        display:none;
+    .navbar_icons {
+        display: none;
         justify-content: center;
-        width:100%;
+        width: 100%;
     }
-    .navbar_toggleBtn{
-        display:block;
+    .navbar_toggleBtn {
+        display: block;
     }
-    
+
     .navbar_menu.active,
-    .navbar_icons.active{
-        display:flex;
+    .navbar_icons.active {
+        display: flex;
     }
-    .calender{
-        width:630px;
-        margin:auto;
+    .calender {
+        width: 630px;
+        margin: auto;
     }
-    progress{
-        width:630px;
+    progress {
+        width: 630px;
     }
     .cal_header {
-        display : flex;
+        display: flex;
         justify-content: space-between;
         align-items: center;
     }
-    .days{
-        display:flex;
-        margin:25px 0 10px;
+    .days {
+        display: flex;
+        margin: 25px 0 10px;
     }
-    .day{
-        width : 90px;
-        font-size:20px;
-        text-align:center;
+    .day {
+        width: 90px;
+        font-size: 20px;
+        text-align: center;
     }
-    .dates{
-        display:flex;
-        flex-flow:row wrap;
-        height:315px;
-        border-top : 1px solid #333333;
-        border-right : 1px solid #333333;
+    .dates {
+        display: flex;
+        flex-flow: row wrap;
+        height: 315px;
+        border-top: 1px solid #333333;
+        border-right: 1px solid #333333;
     }
-    .date{
-        width : 86.84px;
-        padding : 0px;
-        font-size:20px;
-        text-align:left;
-        border-bottom:1px solid #333333;
-        border-left:1px solid #333333;
+    .date {
+        width: 86.84px;
+        padding: 0px;
+        font-size: 20px;
+        text-align: left;
+        border-bottom: 1px solid #333333;
+        border-left: 1px solid #333333;
     }
 }

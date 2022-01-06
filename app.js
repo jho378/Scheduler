@@ -1,5 +1,5 @@
 const express = require('express');
-const {body, validationResult} = require('express-validator');
+const { body, validationResult } = require('express-validator');
 const crypto = require('crypto');
 const mongoose = require('mongoose');
 const axios = require('axios');
@@ -7,12 +7,22 @@ const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const path = require('path');
 
-const {Asset, Book, Coin, Key, Stock, User, Schedule, Workout, Bucketlist} = require('./models');
-const {getHTML, parsing ,encryptPassword, setAuth} = require('./utils');
+const {
+    Asset,
+    Book,
+    Coin,
+    Key,
+    Stock,
+    User,
+    Schedule,
+    Workout,
+    Bucketlist,
+} = require('./models');
+const { getHTML, parsing, encryptPassword, setAuth } = require('./utils');
 const app = express();
 const port = 3000;
 
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -29,7 +39,7 @@ app.use('/bucketlists', require('./routes/bucketlists'));
 //     // res.sendFile(__dirname + "\\public\\index.html");
 //     // res.sendFile(path.join(__dirname, ))
 //     fs.readFile(__dirname+"\\public\\index.html", (err, data) => {
-        
+
 //         if(err){
 //             console.log('error occured at url \'/\'.');
 //             res.status(404).send('Not Found');
@@ -52,8 +62,8 @@ app.use('/bucketlists', require('./routes/bucketlists'));
 //     })
 // })
 
-app.listen(port, ()=> {
-    console.log(`listening at port: ${port}`)
-})
+app.listen(port, () => {
+    console.log(`listening at port: ${port}`);
+});
 
 // C : post R : get U : put D : delete
