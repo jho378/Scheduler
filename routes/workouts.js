@@ -65,13 +65,14 @@ router.route('/:id')
     .delete(setAuth, async(req, res)=> {
         const user = req.user;
         const {id} = req.params;
-        try{
-        const deleted = Workout.findOne({user, id});
-        await Workout.deleteOne({user, id});
-        return  res.send({deleted});
-        }   catch(err){
-            return res.status(400).send({error : 'Cannot delete a item now. Try again later.'})
-        } 
+        // try{
+        const workout = await Workout.findOne({user, id});
+        if(!workout)    return res.status(400).send({error : 'Workout is not found'})
+        await Workout.findOneAndDelete({user, id});
+        return  res.send({deleted : workout, user, id});
+        // }   catch(err){
+        //     return res.status(400).send({error : 'Cannot delete a item now. Try again later.'})
+        // } 
     })
 
 module.exports =router;

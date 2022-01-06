@@ -62,7 +62,7 @@ router.route('/:scheduleId')
         const user = req.user;
         const {scheduleId} = req.params;
         const schedule = await Schedule.findOne({user, id : parseInt(scheduleId), isDeleted:false});
-        
+        if(!schedule)   return res.status(404).send({error : 'Cannot find a chosen schedule'});
         schedule.isDeleted = true;
         await schedule.save();
         // id 순서 다시 바꿔주는 로직!

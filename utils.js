@@ -42,7 +42,7 @@ const getHTML = async(ticker) => {
 }
 
 const parsing = async(ticker) => {
-    const html = await getSubHTML(ticker);
+    const html = await getHTML(ticker);
     const $ = cheerio.load(html.data);
     const $price = $("#quote-header-info");
     $price.each((idx, node) => {

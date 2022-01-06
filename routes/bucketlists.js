@@ -23,25 +23,18 @@ router.get('/', setAuth, async(req, res) => {
         const bucketlists = await Bucketlist.find({user});
         const titles = bucketlists.map(e => e.title);
         const isDones = bucketlists.map(e => e.isDone);
-        fs.readFile("./public/bucketlist.html", (err, data) => {
-            if(err){
-                console.error(err);
-                res.status(400).send('Invalid URI');
-            }   else{
-                res.send(data, titles, isDones);
-            }
-        })
+        return res.send({titles, isDones});
     }   catch(err){
         return res.status(400).send({error : 'Cannot get access to bucketlists.'});
     }
 });
 
-router.route('/:bucketlisttitle')
+router.route('/:bucketlistTitle')
     .get(setAuth, async(req, res)=> {
         const user = req.user;
         const {bucketlistTitle} = req.params;
         try{
-            const bucketlist = await Bucketlist.findOne({user, title:bucketlistTitle});
+            const bucketlist = await Bucketlist.findOne({user, title:String(bucketlistTitle)});
             const {title, description, isDone} = bucketlist;
             return res.send({title, description, isDone});
         }   catch(err){
@@ -53,6 +46,7 @@ router.route('/:bucketlisttitle')
         const {bucketlistTitle} = req.params;
         const {title, description, isDone} = req.body;
         const bucketlist = await Bucketlist.findOne({user, title:bucketlistTitle});
+        if(!bucketlist) return res.status(400).send({error : 'bucketlist not found. Might have been changed already.'})
         bucketlist.title = title;
         bucketlist.description = description; 
         bucketlist.isDone = isDone;
@@ -63,10 +57,10 @@ router.route('/:bucketlisttitle')
     .delete(setAuth, async(req, res) => {
         const user = req.user;
         const {bucketlistTitle} =req.params;
-        await Bucketlist.findOneAndDelete({user, title:bucketlistTitle}, (err, deleted) => {
-            if(err) return res.status(400).send({error : 'Cannot delete a item now.'})
-            else return res.send({deleted});
-        })
-});
+        const deleted = await Bucketlist.findOne({user, title:bucketlistTitle});
+        if(!deleted) return res.status(400).send({error : 'Bucketlist not found. Might have been already deleted.'});
+        await Bucketlist.findOneAndDelete({user, title:bucketlistTitle})
+        return res.send({deleted});
+    });
 
 module.exports = router;

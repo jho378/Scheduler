@@ -99,7 +99,7 @@ router.post('/stock/:ticker/buy', setAuth, async(req, res)=>{
     const quantity = Number(req.body.quantity);
     
     const asset = await Asset.findOne({user, ticker});
-
+    if(!asset)  return res.status(404).send({error : `${ticker} not registered by now. Please press add button to create a stock`});
     const {averagePrice, balance} = asset;
     asset.averagePrice = (balance*averagePrice+quantity*purchasePrice)/(balance + quantity);
     asset.balance += quantity;
@@ -122,6 +122,7 @@ router.post('/coin/:coinName/buy', setAuth, async(req, res) => {
     const quantity = Number(req.body.quantity);
     
     const asset = await Asset.findOne({user, name : coinName});
+    if(!asset) return res.status(404).send({error : `${coinName} not registered by now. Please press add button to create a coin`})
     console.log(asset);
     const {averagePrice, balance} = asset;
     asset.averagePrice = (balance*averagePrice + quantity*purchasePrice) / (balance + quantity);

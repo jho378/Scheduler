@@ -66,7 +66,7 @@ router.route('/:bookTitle')
         const user = req.user;
         const {bookTitle} = req.params;
         const book = await Book.findOne({user, title : bookTitle, isDeleted : false});
-        
+        if(!book)   return res.status(404).send({error : `The book ${bookTitle} not found.`})
         book.isDeleted = true;
         await book.save();
         return res.send({book});
