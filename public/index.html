@@ -42,52 +42,55 @@
             <i class="fas fa-bars"></i>        
         </a>
     </nav>
-    <div class="calender">
-        <div class="cal_header">
-            <div class="cal_year-month"></div>
-            <ul class='mustdolist'>Must do list
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>     
+    <main>
+        <div class="calender">
+            <div class="cal_header">
+                <div class="cal_year-month"></div>
+                <ul class='mustdolist'>Must do list
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>     
+            </div>
+            <div class="main">
+                <div class="days">
+                    <div class="day">SUN</div>
+                    <div class="day">MON</div>
+                    <div class="day">TUE</div>
+                    <div class="day">WED</div>
+                    <div class="day">THU</div>
+                    <div class="day">FRI</div>
+                    <div class="day">SAT</div>
+                </div>
+                <div class="dates"></div>  
+            </div>
+    </main>
+    
+    <div class='progress'>
+        <div>
+        <label for='book'>
+            <span class='lang'>- Read 40 books</span> 
+            <span class="percent">49%</span>
+        </label>
+        <progress id='book' value="49" max="100" >49%</progress><br>
         </div>
-        <div class="main">
-            <div class="days">
-                <div class="day">SUN</div>
-                <div class="day">MON</div>
-                <div class="day">TUE</div>
-                <div class="day">WED</div>
-                <div class="day">THU</div>
-                <div class="day">FRI</div>
-                <div class="day">SAT</div>
-            </div>
-            <div class="dates"></div>  
+        
+        <div>
+        <label for="health">
+            <span class='lang'>- 20 times a month</span>
+            <span class='percent'>30%</span>
+        </label>
+        <progress id='health' value="30" max="100">30%</progress><br>
         </div>
-        <div class='progress'>
-            <div>
-            <label for='book'>
-                <span class='lang'>- Read 40 books</span> 
-                <span class="percent">49%</span>
-            </label>
-            <progress id='book' value="49" max="100" >49%</progress><br>
-            </div>
-            
-            <div>
-            <label for="health">
-                <span class='lang'>- 20 times a month</span>
-                <span class='percent'>30%</span>
-            </label>
-            <progress id='health' value="30" max="100">30%</progress><br>
-            </div>
 
-            <div>
-                <label for="drawing">
-                    <span class='lang'>- Draw 30 paintings</span>
-                    <span class='percent'>72%</span>
-                </label>
-                <progress id='drawing' value='72' max='100'>72%</progress>
-            </div>
+        <div>
+            <label for="drawing">
+                <span class='lang'>- Draw 30 paintings</span>
+                <span class='percent'>72%</span>
+            </label>
+            <progress id='drawing' value='72' max='100'>72%</progress>
         </div>
+    </div>
     </div>  
 </body>
 </html>
