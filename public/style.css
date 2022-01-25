@@ -1,6 +1,10 @@
 * {
     font-family: 'caveat';
 }
+html{
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     min-width: 1450px;
@@ -111,8 +115,11 @@ a {
 }
 .day {
     width: 200px;
+    /* margin : 0 10px 0 10px; */
     font-size: 20px;
     text-align: center;
+    background-color : rgba(38, 51, 67, 0.5);
+    border-radius : 10px;
 }
 .dates {
     display: flex;
@@ -121,6 +128,7 @@ a {
     border-top: 1px solid #333333;
     border-right: 1px solid #333333;
 }
+
 .date {
     width: 13.8%;
     padding: 0px;
@@ -129,6 +137,12 @@ a {
     text-align: left;
     border-bottom: 1px solid #333333;
     border-left: 1px solid #333333;
+}
+
+.date:hover{
+    background-color: #B0C4DE;
+    cursor : pointer;
+    z-index : 100;
 }
 
 .day:nth-child(7n + 1),
@@ -184,7 +198,6 @@ a {
 .bucketlist_name {
     color: #263343;
     padding-top: 20px;
-    padding-left: 36%;
     padding-bottom: 40px;
     font-size: 45px;
 }
@@ -215,6 +228,8 @@ a {
 /* 이 아래부터는 semantic ui Overriding하는것 */
 
 .progress {
+    width :1400px;
+    margin : auto; 
     margin-top: 20px;
 }
 progress {
@@ -286,6 +301,8 @@ label {
         border-left: 1px solid #333333;
     }
 }
+
+/* max-width: 768px 768 이하일때 ! */
 @media screen and (max-width: 768px) {
     .navbar {
         flex-direction: column;
