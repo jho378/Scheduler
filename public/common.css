@@ -3,6 +3,7 @@
 }
 html{
     box-sizing: border-box;
+    background-color: #F5F5F3;
 }
 
 body {
@@ -17,7 +18,6 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* background-color: rgb(0, 51, 102); */
     background-color: #263343;
     padding: 8px 12px;
 }
@@ -93,7 +93,10 @@ a {
 }
 
 /* 여기까지가 위에 navbar 꾸민것 */
-
+main{
+    display:flex;
+    flex-direction: row;
+}
 .calender {
     width: 1400px;
     margin: auto;
@@ -121,16 +124,28 @@ a {
     background-color : rgba(38, 51, 67, 0.5);
     border-radius : 10px;
 }
-.dates {
+.dates.fiveweeks{
     display: flex;
     flex-flow: row wrap;
-    height: 700px;
+    height: 800px;
+    border-top: 1px solid #333333;
+    border-right: 1px solid #333333;
+}
+.dates.sixweeks{
+    display: flex;
+    flex-flow: row wrap;
+    height: 960px;
     border-top: 1px solid #333333;
     border-right: 1px solid #333333;
 }
 
-.date {
+.date ul{
+    margin : 0;
+    padding : 0;
+}
+.date.fiveweeks{
     width: 13.8%;
+    height: 19.8%;
     padding: 0px;
     flex-grow: 1;
     font-size: 20px;
@@ -138,13 +153,21 @@ a {
     border-bottom: 1px solid #333333;
     border-left: 1px solid #333333;
 }
-
+.date.sixweeks{
+    width: 13.8%;
+    height: 16.53%;
+    padding: 0px;
+    flex-grow: 1;
+    font-size: 20px;
+    text-align: left;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid #333333;
+}
 .date:hover{
     background-color: #B0C4DE;
     cursor : pointer;
     z-index : 100;
 }
-
 .day:nth-child(7n + 1),
 .date:nth-child(7n + 1) {
     color: #d13e3e;
@@ -181,7 +204,134 @@ a {
     content: '';
 }
 
-/* 여기까지가 달력 본체 */
+.control{
+    margin-top : 20px;
+    display:flex;
+    flex-direction: row-reverse;
+}
+.deleteList{
+    display : inline-block; 
+    padding : 5px;
+    width : 150px;
+    color : white;
+    background-color: #263343;
+    font-size: 22px;
+    border-radius :45px;
+    transition: ease-out 0.3s;
+    box-shadow: inset 0 0 0 0 white;
+}
+.deleteList:hover{
+    background-color : #d49466;
+    cursor:pointer;
+    box-shadow: inset 150px 0 0 0 #d9ccbc;
+    cursor: pointer;
+    color: #263343;
+}
+.addList{
+    display : inline-block; 
+    margin-left : 10px;
+    padding : 5px;
+    width : 150px;
+    color : white;
+    background-color: #263343;
+    font-size: 22px;
+    border-radius :45px;
+    transition: ease-out 0.3s;
+    box-shadow: inset 0 0 0 0 white;
+}
+.addList:hover{
+    background-color : #d49466;
+    cursor:pointer;
+    box-shadow: inset 150px 0 0 0 #d9ccbc;
+    cursor: pointer;
+    color: #263343;
+}
+.schedule{
+    color : black;
+    list-style: none;
+    text-align:center;
+    font-size:16px;
+    background-color: rgba(212,148,102, 0.6);
+    border-radius:3px;  
+    margin-bottom: 1.5px;
+}
+.schedule:nth-child(2n+1){
+    color : #263343;
+}
+img[src="img/delete.png"]{
+    max-width: 22px;
+}
+img[src="img/whiteplus.png"]{
+    max-width: 22px;
+}
+img[src="img/done.png"]{
+    float: left;
+    max-width: 25px;    
+}
+.modal{
+    position : fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    display:flex;
+    justify-content: center;
+    align-items : center;
+}
+.modal_overlay{
+    background-color: rgba(0,0,0,0.6);
+    width: 100%;
+    height : 100%; 
+    position : absolute;
+}
+.modal_inner{
+    font-size: 25px;
+    background-color : white;
+    padding : 50px 100px;
+    text-align: center;
+    box-shadow : 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    position: relative; 
+    width : 40%;
+    height: 40%;
+    border-radius: 30px;
+}
+.modal_inner h1{
+    font-size: 50px;
+}
+.modal.hidden{
+    display:none;
+}
+input[name="schedule_title"]{
+    width:290px;
+}
+.schedule_description{
+    width: 344px;
+    margin: auto;
+    text-align : left;
+}
+
+.saveBtn{
+    background-color:#016ABC;
+    color : white; 
+    cursor:pointer;
+    font-size : 32px;
+    border-radius:32px;
+}
+.cancelBtn{
+    color: white;
+    cursor : pointer;
+    font-size : 32px;
+    position: absolute;
+    top: 0;
+    right : 0;
+}
+
+img[src="img/cancel.png"]{
+    max-width: 80px;
+}
+
+
+/*여기까지가 달력 본체 */
 
 /* 이 아래부터 bucketlist */
 .bucketlist {
