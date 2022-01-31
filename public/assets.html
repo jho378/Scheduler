@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="common.css">
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel='stylesheet' href='common.css'>
     <script src="https://kit.fontawesome.com/4e72769f7c.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap" rel="stylesheet">
-    <title>Bucketlist</title>
-    <script src='bucketlist.js' defer></script>
+    <title>Planner</title>
+    <script src='main.js' defer></script>
+    
 </head>
-
 <body>
     <nav class='navbar'>
         <div class='navbar_logo'>
@@ -31,9 +31,9 @@
             <li><a href="/DEC">DEC</a></li>
         </ul>
         <ul class='navbar_icons'>            
-            <li><a href=""><i class="fas fa-dollar-sign"></i></a></li>
-            <li><a href=""><i class="fas fa-book-open"></i></a></li>
-            <li><a href=""><i class="fas fa-dumbbell"></i></a></li>
+            <li><a href="/assets"><i class="fas fa-dollar-sign"></i></a></li>
+            <li><a href="/books"><i class="fas fa-book-open"></i></a></li>
+            <li><a href="/workouts"><i class="fas fa-dumbbell"></i></a></li>
             <li><a href=""><i class="fas fa-laptop-code"></i></a></li>
             <li><a href=""><i class="fas fa-plane"></i></a></li>
             <li><a href=""><i class="fas fa-list"></i></a></li>
@@ -42,19 +42,12 @@
             <i class="fas fa-bars"></i>        
         </a>
     </nav>
-
-    <div class="bucketlist">
-        <div class="bucketlist_header">
-            <div></div>
-            <div class="bucketlist_name">&lt;&nbsp;&nbsp;Jinho's Bucketadsfadsfasdflists&nbsp;&nbsp;&gt;</div>
-            <div class="bucketlist_create"><button class="create_btn">create</button></div>
+    <div class="portfolio">
+        <div class="portfolio_header">
+            <div class="cal_year-month"></div>
+            <ul class='mustdolist'>Must do list
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>     
         </div>
-        <div class=bucketlist_main>
-            <div class=wishlists>
-                <div class="wishlist">
-                    <input type="checkbox" id="chk1"><label for="chk1">체크박스</label>
-                </div>
-            </div>
-        </div>
-    </div>
-</html>

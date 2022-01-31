@@ -3,7 +3,7 @@
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <link rel='stylesheet' href='style.css'>
+    <link rel='stylesheet' href='common.css'>
     <script src="https://kit.fontawesome.com/4e72769f7c.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap" rel="stylesheet">
     <title>Planner</title>
@@ -31,12 +31,12 @@
             <li><a href="/DEC">DEC</a></li>
         </ul>
         <ul class='navbar_icons'>            
-            <li><a href=""><i class="fas fa-dollar-sign"></i></a></li>
-            <li><a href=""><i class="fas fa-book-open"></i></a></li>
-            <li><a href=""><i class="fas fa-dumbbell"></i></a></li>
+            <li><a href="/assets"><i class="fas fa-dollar-sign"></i></a></li>
+            <li><a href="/books"><i class="fas fa-book-open"></i></a></li>
+            <li><a href="/workouts"><i class="fas fa-dumbbell"></i></a></li>
             <li><a href=""><i class="fas fa-laptop-code"></i></a></li>
             <li><a href=""><i class="fas fa-plane"></i></a></li>
-            <li><a href=""><i class="fas fa-list"></i></a></li>
+            <li><a href="/bucketlist"><i class="fas fa-list"></i></a></li>
         </ul>
         <a href="#" class="navbar_toggleBtn">
             <i class="fas fa-bars"></i>        
@@ -52,6 +52,10 @@
                     <li></li>
                 </ul>     
             </div>
+            <div class="control">
+                <button class="addList right-items"><img src="img/whiteplus.png"><br>Add Calendar</button>
+                <button class="deleteList right-items"><img src="img/delete.png"><br>Delete Schedule</button>
+            </div>
             <div class="main">
                 <div class="days">
                     <div class="day">SUN</div>
@@ -64,8 +68,22 @@
                 </div>
                 <div class="dates"></div>  
             </div>
+        </div>
     </main>
-    
+    <div class="modal hidden">
+        <div class="modal_overlay"></div>
+        <div class="modal_inner">
+            <h1>Add Calendar</h1>
+            <div class='schedule_starting_date'>Schedule Starting Date : <input type="date" id="schedule_starting_date" name="schedule_starting_date"></div>
+            <div class='schedule_finishind_date'>Schedule Finishing Date : <input type="date" id="schedule_finishing_date" name="schedule_finishing_date"></div>
+            <div class="schedule_title"> Title : <input type='text' name="schedule_title" placeholder="Two prolem solutions"></div>
+            <div class="schedule_description">Description</div>
+            <textarea name="schedule_description" cols="70" rows="6" placeholder="Write your plan on detail (i.e Solve one data structure problem and one algorithm)"></textarea><br>
+            <button class="saveBtn">click here to save</button>
+            <!-- <button class="cancelBtn"><img src="img/cancel.png" class="cancelBtn"></button> -->
+            <img src="img/cancel.png" class="cancelBtn">
+        </div>
+    </div>
     <div class='progress'>
         <div>
         <label for='book'>
