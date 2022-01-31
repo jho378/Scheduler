@@ -38,8 +38,7 @@ app.use('/bucketlists', require('./routes/bucketlists'));
 // app.get('/', async(req, res)=> {
 //     // res.sendFile(__dirname + "\\public\\index.html");
 //     // res.sendFile(path.join(__dirname, ))
-//     fs.readFile(__dirname+"\\public\\index.html", (err, data) => {
-
+//     fs.readFile(__dirname+"/public/index.html", (err, data) => {
 //         if(err){
 //             console.log('error occured at url \'/\'.');
 //             res.status(404).send('Not Found');
@@ -51,16 +50,16 @@ app.use('/bucketlists', require('./routes/bucketlists'));
 //     });
 // })
 
-// app.get('/:month', async(req, res) => {
-//     fs.readFile(__dirname + "/public/index.html", (err, data) => {
-//         if(err){
-//             console.log('error occured at path /:month');
-//             res.status(400).send('Invalid Month');
-//         }   else{
-//             res.end(data);
-//         }
-//     })
-// })
+app.get('/:month', async(req, res) => {
+    fs.readFile(__dirname + "/public/index.html", (err, data) => {
+        if(err){
+            console.log('error occured at path /:month');
+            res.status(400).send('Invalid Month');
+        }   else{
+            res.end(data);
+        }
+    })
+})
 
 app.listen(port, () => {
     console.log(`listening at port: ${port}`);

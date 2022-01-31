@@ -145,4 +145,13 @@ overlay.addEventListener('click', closeAddModal);
 cancleBtn.addEventListener('click', closeAddModal);
 addBtn.addEventListener('click', openAddModal);
 
+const addMustDoList = document.querySelector('.addmustdolist');
 
+const handleAddMustDoList = (event) => {
+    const mustDoList = document.querySelectorAll('#mustdolist');
+    if(mustDoList[0].innerText.length===0) mustDoList[0].innerText = 'hello';
+    else if(mustDoList[1].innerText.length===0) mustDoList[1].innerText = 'hello';
+    else if(mustDoList[2].innerText.length===0) mustDoList[2].innerText = 'hello';
+    else alert('maximum of 3 must-do-lists permitted');
+}
+addMustDoList.addEventListener('click', handleAddMustDoList)
