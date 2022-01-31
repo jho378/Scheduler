@@ -51,15 +51,30 @@ const renderCalendar = () => {
     const dates = prevDates.concat(thisDates, nextDates);
     const firstDateIndex = dates.indexOf(1);
     const lastDateIndex = dates.lastIndexOf(tlDate);
-    dates.forEach((date, i) => {
-        const condition =
-            i >= firstDateIndex && i < lastDateIndex + 1 ? 'this' : 'other';
-        dates[
-            i
-        ] = `<div class='date'><span class='${condition}'>${date}</span></div>`;
-    });
+    if(dates.length===35){
+        dates.forEach((date, i) => {
+            const condition =
+                i >= firstDateIndex && i < lastDateIndex + 1 ? 'this' : 'other';
+            dates[
+                i
+            ] = `<div class='date fiveweeks'><span class='${condition}'>${date}</span></div>`;
+        });
+        document.querySelector('.dates').classList.add('fiveweeks')
+        document.querySelector('.dates').innerHTML = dates.join('');
+    }
+    if(dates.length===42){
+        dates.forEach((date, i) => {
+            const condition =
+                i >= firstDateIndex && i < lastDateIndex + 1 ? 'this' : 'other';
+            dates[
+                i
+            ] = `<div class='date sixweeks'><span class='${condition}'>${date}</span></div>`;
+        });
+        document.querySelector('.dates').classList.add('sixweeks')
+        document.querySelector('.dates').innerHTML = dates.join('');
+    }
+
     // inserting htmls made above to the 64th line of index.html
-    document.querySelector('.dates').innerHTML = dates.join('');
 
     const today = new Date();
     if (
@@ -78,8 +93,8 @@ const renderCalendar = () => {
 // 이걸 아마도 main.js에서 처리하면 안되고 나중에 import해서 처리해야 하는 모양이에요
 const URLSearch = location.pathname.split('/');
 
+// localhost:3000/  , 즉 뒤에 아무것도 안 붙었을 때 이것도 나중에 바꿔줘야함. 
 if (URLSearch[1].length === 0) {
-    console.log(URLSearch[1]);
     renderCalendar();
 } else {
     let tmp = month.indexOf(URLSearch[1]);
@@ -88,3 +103,46 @@ if (URLSearch[1].length === 0) {
     now.setMonth(tmp);
     renderCalendar();
 }
+
+
+const dates = document.querySelector('.dates');
+// if()
+
+
+const date = document.querySelectorAll('.date');
+const handleDateClick = (event) => {
+    console.log(event.target.innerHTML);
+    event.target.innerHTML+=`<ul><li class='schedule'><img src="img/done.png">JAVASCRIPT 코딩하기</li><li class='schedule'>JAVASCRIPT 코딩하기</li></ul>`
+    console.log(event.target.innerHTML);
+}
+date.forEach(e => e.addEventListener('click', handleDateClick));
+
+const handleDeleteClick = () => {
+    const schedules = document.querySelectorAll('.schedule');
+
+}
+const deleteBtn = document.querySelector('.deleteList');
+deleteBtn.addEventListener('click',handleDeleteClick);
+
+const addBtn = document.querySelector('.addList');
+const modal = document.querySelector('.modal')
+const overlay = document.querySelector('.modal_overlay');
+const saveBtn = document.querySelector('.saveBtn');
+const cancleBtn = document.querySelector('.cancelBtn');
+const scheduleStartingDate = document.querySelector('#schedule_starting_date');
+const scheduleFinishingDate = document.querySelector('#schedule_finishing_date');
+scheduleStartingDate.value = new Date().toISOString().substring(0, 10);
+scheduleFinishingDate.value = new Date().toISOString().substring(0, 10);
+
+const openAddModal = () => {
+    modal.classList.remove('hidden')
+}
+const closeAddModal = () => {
+    modal.classList.add('hidden');
+}
+
+overlay.addEventListener('click', closeAddModal);
+cancleBtn.addEventListener('click', closeAddModal);
+addBtn.addEventListener('click', openAddModal);
+
+
