@@ -268,6 +268,12 @@ img[src="img/done.png"]{
     float: left;
     max-width: 25px;    
 }
+img[src="img/mustdolistplus.svg"]{
+    max-width:15px;
+    padding-left:10px; 
+    cursor:pointer;
+}
+
 .modal{
     position : fixed;
     top:0;
@@ -303,12 +309,17 @@ img[src="img/done.png"]{
 }
 input[name="schedule_title"]{
     width:290px;
+    font-size:20px;
 }
 .schedule_description{
     width: 344px;
     margin: auto;
     text-align : left;
 }
+textarea[name="schedule_description"]{
+    font-size:18px;
+}
+
 
 .saveBtn{
     background-color:#016ABC;
