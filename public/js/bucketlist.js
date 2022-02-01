@@ -17,6 +17,6 @@ const createElem = () => {
     const wishlist = `<div id = 1>1. html</div>`;
     document.querySelector('.wishlist').innerHTML = wishlist;
 };
-createBtn.addEventListener('click', () => create());
+// createBtn.addEventListener('click', () => create());
 
-createBtn.addEventListener('click', () => createElem());
+// createBtn.addEventListener('click', () => createElem());
