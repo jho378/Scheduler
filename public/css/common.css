@@ -72,12 +72,44 @@ a {
     text-align : center;
 }
 .map{
+    display: flex; 
+    flex-direction: row;
+    flex-wrap : wrap;
+    box-shadow : 5px 10px 8px 10px #46515f;
     width: 1800px;
     height:900px;
-    background-color: red;
-    border : 1px dotted green;
-    margin : 20px; 
+    background-color : #E6E6E6;
+    /* border : 1px dotted green; */
+    margin : 50px 0px 0px 50px;    
+    cursor : pointer;
 }
+
+.country{
+    width : 10px;
+    height : 10px;
+    border-radius : 5px;
+    margin : 0px;
+    padding: 0px;
+    background-color : 	#C3BDBA;
+    opacity : 0.5;
+}
+.country.active{
+    background-color: #46515f;
+}
+.Sea{
+    width:10px;
+    height:10px;
+    border-radius : 5px;
+    margin : 0px;
+    padding: 0px;
+    background-color : #E6E6E6;
+    opacity : 0.5;
+    cursor: default;
+}
+
+
+
+
 /* img[src="img/africa.png"]{
     max-width: 50px;
 }
@@ -110,7 +142,7 @@ img#world:hover{
 
 
 
-img[src="img/world.png"] span{
+img[src="../img/world.png"] span{
     text-align:center;
 }
 
@@ -313,17 +345,17 @@ main{
 .schedule:nth-child(2n+1){
     color : #263343;
 }
-img[src="img/delete.png"]{
+img[src="../img/delete.png"]{
     max-width: 22px;
 }
-img[src="img/whiteplus.png"]{
+img[src="../img/whiteplus.png"]{
     max-width: 22px;
 }
-img[src="img/done.png"]{
+img[src="../img/done.png"]{
     float: left;
     max-width: 25px;    
 }
-img[src="img/mustdolistplus.svg"]{
+img[src="../img/mustdolistplus.svg"]{
     max-width:15px;
     padding-left:10px; 
     cursor:pointer;
@@ -392,7 +424,7 @@ textarea[name="schedule_description"]{
     right : 0;
 }
 
-img[src="img/cancel.png"]{
+img[src="..img/cancel.png"]{
     max-width: 80px;
 }
 
