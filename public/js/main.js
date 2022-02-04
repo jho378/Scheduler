@@ -94,16 +94,17 @@ const renderCalendar = () => {
 const URLSearch = location.pathname.split('/');
 
 // localhost:3000/  , 즉 뒤에 아무것도 안 붙었을 때 이것도 나중에 바꿔줘야함. 
-if (URLSearch[1].length === 0) {
-    renderCalendar();
-} else {
-    let tmp = month.indexOf(URLSearch[1]);
-    console.log(URLSearch[1]);
-    now.setDate(1);
-    now.setMonth(tmp);
-    renderCalendar();
-}
+// if (URLSearch[1].length === 0) {
+//     renderCalendar();
+// } else {
+//     let tmp = month.indexOf(URLSearch[1]);
+//     console.log(URLSearch[1]);
+//     now.setDate(1);
+//     now.setMonth(tmp);
+//     renderCalendar();
+// }
 
+renderCalendar();
 
 const dates = document.querySelector('.dates');
 // if()
@@ -112,7 +113,7 @@ const dates = document.querySelector('.dates');
 const date = document.querySelectorAll('.date');
 const handleDateClick = (event) => {
     console.log(event.target.innerHTML);
-    event.target.innerHTML+=`<ul><li class='schedule'><img src="img/done.png">JAVASCRIPT 코딩하기</li><li class='schedule'>JAVASCRIPT 코딩하기</li></ul>`
+    event.target.innerHTML+=`<ul><li class='schedule'><img src="../img/done.png">JAVASCRIPT 코딩하기</li><li class='schedule'>JAVASCRIPT 코딩하기</li></ul>`
     console.log(event.target.innerHTML);
 }
 date.forEach(e => e.addEventListener('click', handleDateClick));
