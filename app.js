@@ -50,6 +50,18 @@ app.use('/bucketlists', require('./routes/bucketlists'));
 //     });
 // })
 
+app.get('/traveler', (req, res) => {
+    fs.readFile(path.join(__dirname, "./public/html/traveler.html"), (err, data) => {
+        if(err){
+            console.log(err);
+            console.log('error occured at path /traveler');
+            res.status(400).send('Invalid uri');
+        }   else{
+            res.end(data);
+        }
+    })
+})
+
 app.get('/:month', async(req, res) => {
     fs.readFile(__dirname + "/public/index.html", (err, data) => {
         if(err){
