@@ -31,7 +31,7 @@ router.get('/traveler', (req, res) => {
 
 router.get('/:month', async(req, res) => {
     const {month} = req.params;
-    fs.readFile(__dirname + "../public/html/index.html", (err, data) => {
+    fs.readFile(path.join(__dirname, "../public/html/index.html"), (err, data) => {
         if(err){
             console.log('error occured at path /:month');
             res.status(400).send('Invalid Month');

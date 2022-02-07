@@ -424,7 +424,7 @@ textarea[name="schedule_description"]{
     right : 0;
 }
 
-img[src="..img/cancel.png"]{
+img[src="../img/cancel.png"]{
     max-width: 80px;
 }
 
