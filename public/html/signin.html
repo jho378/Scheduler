@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/common.css">
+        <link rel="stylesheet" href="../css/signin.css">
+        <script src="https://kit.fontawesome.com/4e72769f7c.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap" rel="stylesheet">
+
+        <title>Traveler</title>
+        <script src="../js/signin.js" defer></script>
+        <script src='../js/bundle.js' defer></script>
+    </head>
+
+    <body>
+        <section class="signin-wrap">
+            <h1>Sign In</h1>
+            <form action="/signin/submit">
+                <div class="int-area id">
+                    <input type="text" id = "id" name="id" autocomplete = "off">
+                    <label for="id">USER ID</label>
+                </div>
+                <div class="int-area password">
+                    <input type="password" id="password" name="password" autocomplete="off">
+                    <label for="password">PASSWORD</label>
+                </div>
+                <div class="remember">
+                    <input type="checkbox" id="remember" checked>Remember me?
+                    <label for="remember"></label>
+                </div>
+                <div class="btn-area">
+                    <button type="submit" id="signin-btn">Sign In</button>
+                </div>
+            </form>
+            <div class="caption">
+                <a href="">Forgot ID/Password?</a>
+            </div>
+            <div class="sign-up-now">
+                Not a member yet?<a href="">Sign up now</a>
+            </div>
+        </section>
+    </body>
+</html>
