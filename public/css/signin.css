@@ -1,0 +1,155 @@
+body{
+    height : 100vh;
+    background : url("../img/universe.jpg") no-repeat center;
+    background-size : cover;
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    
+}
+body::before{
+    content:"";
+    position : absolute; 
+    z-index : 1;
+    top:0; right:0; bottom: 0; left:0; 
+    background-color : rgba(0,0,0, 0.5);
+}
+.signin-wrap{
+    position : relative;
+    z-index: 2;
+}
+.signin-wrap h1{
+    font-size : 32px;
+    color : #fff;
+    text-align:center;
+    margin-bottom : 60px;
+}
+.int-area{
+    width:400px;
+    position: relative;
+    margin-top: 20px;
+}
+.int-area:first-child{
+    margin-top:0;
+}
+.int-area input{
+    width:100%;
+    padding : 20px 10px 10px;
+    background-color: transparent;
+    border: none;
+    border-bottom : 1px solid #999;
+    font-size : 18px; color : #fff;
+    outline: none;
+}
+.int-area label{
+    position: absolute;
+    left:10px;
+    top:15px;
+    font-size : 18px;
+    color: #999;
+    transition : all 0.5s ease;
+}
+.warning{
+    margin-top: 5px;
+    color: white;
+}
+.int-area label.warning{
+    color : red;
+    animation : warning 0.3s ease;
+    animation-iteration-count: 3;
+}
+.int-area input:focus +label.warning,
+.int-area input:valid +label.warning{
+    color : red;
+}
+@keyframes warning{
+    0% {transform : translateX(-6px);}
+    25% {transform : translateX(6px);}
+    50% {transform : translateX(-6px);}
+    75% {transform : translateX(6px);}
+}
+
+.int-area input:focus + label,
+.int-area input:valid + label{
+    top:0;
+    font-size : 14px;
+    color : #d49466;    
+}
+.remember{
+    color : #fff;
+    margin-top: 15px;
+    position : relative;
+}
+
+.remember label{
+    background-color: #fff;
+    border : 1px solid #d49466;
+    border-radius: 50%;
+    cursor : pointer;
+    height: 20px;
+    left : 0x;
+    position: absolute;
+    top: 0;
+    width: 20px;
+}
+.remember label:after{
+    border : 2px solid #fff;
+    border-top : none; 
+    border-right : none;
+    content : "";
+    height : 6px;
+    left : 4px;
+    opacity : 0;
+    position : absolute;
+    top : 3px;
+    transform : rotate(-45deg);
+    width : 8px;
+}
+.remember input[type="checkbox"]{
+    visibility: hidden;
+    margin-right : 1.5em; 
+}
+.remember input[type="checkbox"]:checked + label{
+    background-color : #d49466;
+    border-color : #ccc;
+}
+.remember input[type="checkbox"]:checked + label:after{
+    opacity :1; 
+}
+
+
+.btn-area{
+    margin-top : 20px;
+}
+.btn-area button{
+    width: 100%;
+    height: 50px;   
+    background: #d49466;
+    color : #fff;
+    font-size : 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+.caption{
+    margin-top : 20px;
+    text-align : center;
+}
+.caption a{
+    font-size : 1em;
+    color : #999;
+    text-decoration: none;
+}
+
+.sign-up-now{
+    margin-top : 20px;
+    text-align : center;
+    font-size : 1.2em;
+    color : #999;
+    text-decoration: none;
+}
+.sign-up-now a{
+    padding-left : 1em;
+    color : #fff;
+    font-weight: bold;
+}
