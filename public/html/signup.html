@@ -4,12 +4,47 @@
         <meta charset='UTF-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
         <link rel='stylesheet' href='../css/common.css'>
+        <link rel='stylesheet' href='../css/signup.css'>
         <script src="https://kit.fontawesome.com/4e72769f7c.js" crossorigin="anonymous"></script>
         <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap" rel="stylesheet">
         <title>Traveler</title>
         <script src='../js/main.js' defer></script>
+        <script src="../js/signup.js" defer></script>
     </head>
     <body>
-        
+        <div class="signup-wrap">
+            <h1>Create Account</h1>
+            <form action="/signup/submit" method="post">
+                <div class="signup-info">
+                    <input type="text" id="last-name" name="last-name" autocomplete="off">
+                    <label for="last-name">Last name</label>
+                </div>
+                <div class="signup-info">
+                    <input type="text" id="first-name" name="first-name" autocomplete="off">
+                    <label for="first-name">First name</label>
+                </div>
+                <div class="signup-info">
+                    <input type="text" id="id" name="id" autocomplete="off">
+                    <label for="id">ID</label>
+                </div>
+                <div class="signup-info">
+                    <input type="password" id="password" name="password" autocomplete="off">
+                    <label for="password">Password</label>
+                </div>
+                <div class="signup-info">
+                    <input type="password" id="password-confirm" name="password-confirm" autocomplete="off">
+                    <label for="password-confirm">Confirm Password</label>
+                </div>
+                <div class ="signup-info gender">
+                    <input type="radio" name="gender" id="male" value="male">
+                    <label for="male">Male</label>
+                    <input type="radio" name="gender" id="female" value="female">
+                    <label for="female">Female</label>
+                </div>
+                <div class="signup-btn">
+                    <button type="submit" id="signin-btn">Sign In</button>
+                </div>
+            </form>
+        </div>
     </body>
 </html>
