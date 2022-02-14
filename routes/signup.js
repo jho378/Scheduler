@@ -6,26 +6,33 @@ const { Asset, Coin, Stock, User } = require('../models');
 const { encryptPassword } = require('../utils');
 
 router.post(
-    '/',
+    '/submit',
     body('id')
         .isAlphanumeric()
         .withMessage('error : user ID must be alphanumeric')
-        .isLength({ min: 8, max: 20 })
+        .isLength({ min: 4, max: 20 })
         .withMessage(
             'error : user ID should be longer than 8 words, shorter than 20 words'
         ),
     body('password')
-        .isLength({ min: 8, max: 16 })
+        .isLength({ min: 6, max: 16 })
         .withMessage(
             'error : Password should be longer than 8 words, shorter than 16 words.'
         ),
-    body('username')
+    body('last-name')
         .isAlphanumeric()
         .withMessage('error : Name must be alphanumeric')
         .isLength({ min: 1, max: 10 })
         .withMessage(
-            'error : Username must be longer than 1 word, shorter than 10 words'
+            'error : last name must be longer than 1 word, shorter than 10 words'
         ),
+    body('first-name')
+    .isAlphanumeric()
+    .withMessage('error : Name must be alphanumeric')
+    .isLength({ min: 1, max: 10 })
+    .withMessage(
+        'error : first name must be longer than 1 word, shorter than 10 words'
+    ),
     async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -72,7 +79,7 @@ router.post(
             });
             await asset.save();
         }
-        return res.send(200);
+        return res.send(user);
     }
 );
 
