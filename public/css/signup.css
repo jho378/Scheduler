@@ -1,0 +1,112 @@
+html{
+    height : 100%;
+}
+body{
+    height : 100%;
+    background : url("../img/universe.jpg") no-repeat center;
+    background-size : cover; 
+    display : flex;
+    justify-content : center; 
+    align-items : center;
+}
+
+body::before{
+    content : "";
+    position : absolute;
+    z-index :1;
+    top:0; right:0; bottom:0; left:0;
+    background-color : rgba(0, 0, 0, 0.4);
+}
+
+.signup-wrap{
+    position: relative;
+    z-index: 2;
+}
+
+.signup-wrap h1{
+   font-size : 3rem;
+   color : #fff;
+   text-align : center;
+   margin-bottom : 2rem;
+}
+
+.signup-info{
+    display : flex;
+    flex-direction :column;
+    height : 3.3rem;
+    position : relative;
+    margin-top : 2rem;
+}
+
+.signup-info input{
+    /* width: 100%; */
+    height : 2.5rem;
+    padding : 20px 10px 10px;
+    background-color : transparent;
+    border : none;
+    border-bottom : 1px solid #999;
+    font-size : 1.4rem;
+    color : #fff;
+    outline : none;
+    
+}
+
+.birthday-info{
+    display : flex;
+    flex-direction : row;
+    justify-content : space-between;
+    padding-bottom : 0.4rem;
+    border-bottom : 1px solid #999;
+}
+
+label{
+    cursor : pointer;
+    font-size : 1.25rem; 
+    color : #d49466;
+}
+
+select, input{
+    box-sizing : border-box;
+}
+.birth-box select{
+    outline : none;
+    width : 8rem;
+    height : 2.4rem;
+    margin-right : 1rem;
+    margin-left : 1rem;
+    font-size : 1.2rem;
+    border : 1px solid #999;
+}
+.birthday-info input{
+    border : 1px solid #999;
+    padding-top : 0.4rem;
+    width : 8rem;
+    background-color : #fff;
+    color : black;
+    font-size : 1.2rem; 
+}
+
+.btn-area{
+    margin-top : 1.25rem; 
+    padding-top: 1rem;
+    border-top : 1px solid #999;
+}
+#signup-btn{
+    width: 100%;
+    height : 3rem;
+    background: #d49466;
+    color : #fff;
+    font-size : 1.25rem;
+    border : none; 
+    outline : none;
+    /* border-radius : 1.625rem; */
+    cursor : pointer;
+}
+
+
+
+select[name="gender"]{
+    outline : none;
+    height : 2rem;
+    font-size : 1.5rem; 
+}

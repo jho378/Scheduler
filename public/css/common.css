@@ -10,7 +10,10 @@ html{
 
 body {
     margin: 0;
-    min-width: 1450px;
+    min-width: 90rem;
+}
+footer{
+    border-top: 1px solid #ccc;
 }
 a {
     text-decoration: none;
@@ -100,7 +103,8 @@ main{
     flex-direction: row;
 }
 .calender {
-    width: 1400px;
+    /* width: 1400px; */
+    width : 91rem;
     margin: auto;
 }
 .cal_header {
@@ -109,34 +113,34 @@ main{
     align-items: center;
 }
 .cal_year-month {
-    font-size: 35px;
+    font-size: 2.25rem;
 }
 .mustdolist li {
     text-decoration: underline;
 }
 .days {
     display: flex;
-    margin: 25px 0 10px;
+    margin: 1.5rem 0 0.625rem;
 }
 .day {
-    width: 200px;
+    width: 13rem;
     /* margin : 0 10px 0 10px; */
-    font-size: 20px;
+    font-size: 1.25rem;
     text-align: center;
     background-color : rgba(38, 51, 67, 0.5);
-    border-radius : 10px;
+    border-radius : 0.7rem;
 }
 .dates.fiveweeks{
     display: flex;
     flex-flow: row wrap;
-    height: 800px;
+    height: 55rem;
     border-top: 1px solid #333333;
     border-right: 1px solid #333333;
 }
 .dates.sixweeks{
     display: flex;
     flex-flow: row wrap;
-    height: 960px;
+    height: 66rem;
     border-top: 1px solid #333333;
     border-right: 1px solid #333333;
 }
@@ -147,7 +151,7 @@ main{
 }
 .date.fiveweeks{
     width: 13.8%;
-    height: 19.8%;
+    height: 20%;
     padding: 0px;
     flex-grow: 1;
     font-size: 20px;
@@ -157,7 +161,7 @@ main{
 }
 .date.sixweeks{
     width: 13.8%;
-    height: 16.53%;
+    height: 16.66%;
     padding: 0px;
     flex-grow: 1;
     font-size: 20px;
@@ -394,6 +398,7 @@ img[src="../img/cancel.png"]{
     width :1400px;
     margin : auto; 
     margin-top: 20px;
+    margin-bottom : 5rem;
 }
 progress {
     width: 1400px;
