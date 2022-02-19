@@ -3,6 +3,11 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema({
     id: { type: String, unique: true },
+    lastname : String,
+    firstname : String,
+    birthday : Date,
+    created : { type: Date, default: Date.now },
+    refreshToken : String,
     password: String,
     keys: [{ type: Schema.Types.ObjectId, ref: 'Key' }],
     assets: [{ type: Schema.Types.ObjectId, ref: 'Asset' }],
