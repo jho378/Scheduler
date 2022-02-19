@@ -3,8 +3,8 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema({
     id: { type: String, unique: true },
-    lastname : String,
-    firstname : String,
+    lastName : String,
+    firstName : String,
     birthday : Date,
     created : { type: Date, default: Date.now },
     refreshToken : String,
