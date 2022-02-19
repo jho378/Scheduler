@@ -2,11 +2,12 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 const crypto = require('crypto');
+const cookieParser = require('cookie-parser');
 
 const { encryptPassword } = require('../utils');
 const { User, Key } = require('../models');
 
-router.post('/', async (req, res) => {
+router.post('/submit', async (req, res) => {
     const { id, password } = req.body;
     const encryptedPassword = encryptPassword(password);
     const user = await User.findOne({ id });
@@ -28,11 +29,12 @@ router.post('/', async (req, res) => {
 
     const { schedules } = user;
     const userInfo = { schedules };
-    return res.send({
-        userInfo,
-        publicKey: key.publicKey,
-        secretKey: key.secretKey,
-    });
+    return res.redirect('/')
+    // return res.send({
+    //     userInfo,
+    //     publicKey: key.publicKey,
+    //     secretKey: key.secretKey,
+    // });
 });
 
 module.exports = router;
