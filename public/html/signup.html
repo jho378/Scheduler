@@ -16,12 +16,12 @@
             <h1>Create Account</h1>
             <form action="/signup/submit" method="post">
                 <div class="signup-info">
-                    <label for="last-name">Last name</label>
-                    <input type="text" id="last-name" name="last-name" autocomplete="off">
+                    <label for="lastname">Last name</label>
+                    <input type="text" id="lastname" name="lastname" autocomplete="off">
                 </div>
                 <div class="signup-info">
-                    <label for="first-name">First name</label>
-                    <input type="text" id="first-name" name="first-name" autocomplete="off">
+                    <label for="firstname">First name</label>
+                    <input type="text" id="firstname" name="firstname" autocomplete="off">
                 </div>
                 <div class="signup-info">
                     <label for="id">ID</label>
@@ -32,20 +32,20 @@
                     <input type="password" id="password" name="password" autocomplete="off">
                 </div>
                 <div class="signup-info">
-                    <label for="password-confirm">Confirm Password</label>
-                    <input type="password" id="password-confirm" name="password-confirm" autocomplete="off">
+                    <label for="passwordConfirm">Confirm Password</label>
+                    <input type="password" id="passwordConfirm" name="passwordConfirm" autocomplete="off">
                 </div>
                 <div class="signup-info birthday">
                     <label for="yy">Date of Birth</label>
                     <div class="birthday-info">
                         <div class="birth-yy">
                             <span class="birth-box">
-                                <input type="text" id="yy" maxlength="4" placeholder="year(4digits)">
+                                <input type="text" id="yy" name="yy" maxlength="4" placeholder="year(4digits)">
                             </span>
                         </div>
                         <div class="birth-mm">
                             <span class="birth-box">
-                                <select id="mm">
+                                <select id="mm" name="mm">
                                     <option>month</option>
                                     <option value="01">1</option>
                                     <option value="02">2</option>
@@ -64,7 +64,7 @@
                         </div>
                         <div class="birth-dd">
                             <span class="birth-box">
-                                <input type="text" id="dd" maxlength="2" placeholder="day">
+                                <input type="text" id="dd" name="dd" maxlength="2" placeholder="day">
                             </span>
                         </div>
                     </div>
