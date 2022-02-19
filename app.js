@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', require('./routes/index'));
 app.use('/signup', require('./routes/signup'));
-app.use('/login', require('./routes/login'));
+app.use('/signin', require('./routes/signin'));
 app.use('/books', require('./routes/books'));
 app.use('/schedules', require('./routes/schedules'));
 app.use('/assets', require('./routes/assets'));
