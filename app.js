@@ -6,6 +6,7 @@ const axios = require('axios');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 
 const {
     Asset,
@@ -25,6 +26,8 @@ const port = 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieParser());
+
 
 app.use('/', require('./routes/index'));
 app.use('/signup', require('./routes/signup'));
