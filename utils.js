@@ -6,33 +6,74 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const fs = require('fs');
 
+const TOKEN_EXPIRED = -3;
+const TOKEN_INVALID = -2;
+
+require('dotenv').config();
+
 const encryptPassword = (password) => {
     return crypto.createHash('sha512').update(password).digest('base64');
 };
 
-const setAuth = async (req, res, next) => {
-    const authorization = req.headers.authorization;
-    // front : const key = jwt.sign({publicKey : pub}, sec {expiresIn : 3600});
-    const [bearer, key] = authorization.split(' ');
-    if (bearer !== 'Bearer')
-        return res.status(400).send({ error: 'Wrong Authorization' });
-    const decodedJwt = jwt.decode(key);
-    if (decodedJwt === null)
-        return res.status(400).send({ error: 'Invalied Key' });
-    const _pub = decodedJwt.publicKey;
-    const _key = await Key.findOne({ publicKey: _pub });
-    let user = null;
-    try {
-        console.log('verifying');
-        const verified = jwt.verify(key, _key.secretKey);
-        // user = await User.findById(_key.user);
-        user = _key.user;
-    } catch (e) {
-        return res.status(403).send({ error: 'Invalid token' });
+const verify = (token) => {
+    try{
+        const verified = jwt.verify(token, process.env.JWT_SECRET)
+    }   catch(err){
+        if(err.message==='jwt expired'){
+            console.log('TOKEN EXPIRED')
+            return TOKEN_EXPIRED;
+        }
+        else if(err.message === 'invalid token'){
+            console.log('INVALID TOKEN');
+            return TOKEN_INVALID;
+        }
+        else{
+            console.log('VERIFYING TOKEN ERROR OCCUR')
+            return TOKEN_INVALID; 
+        }
     }
-    if (!user) return res.status(404).send({ error: 'Cannot find user' });
-    req.user = user;
-    return next();
+}
+const setAuth = async (req, res, next) => {
+    if(req.cookies.accessToken===undefined) return res.status(400).send({error : 'No access token arrived to the server'});
+
+    const accessToken = req.cookies.accessToken;
+    const refreshToken = req.cookies.refreshToken;
+    const accessVerified = verify(accessToken);
+    const refreshVerified = verify(refreshToken);
+
+    if(accessVerified===TOKEN_INVALID || refreshVerified===TOKEN_INVALID){
+        return res.status(400).send({error : 'Strange token submitted'});
+    }
+
+    const user = await User.findOne({refreshToken : refreshToken});
+    if(!user) return res.status(400).send({error : "No user found with given refresh token."});
+
+    if(accessVerified=== TOKEN_EXPIRED){
+        if(refreshVerified===TOKEN_EXPIRED){
+            return res.redirect('/html/signin.html').send({error : 'All the tokens expired, please sign in again'});
+        }   else{
+            console.log('Access expired, refresh good');
+            const newAccessToken = jwt.sign({id : user.id, firstName : user.firstName}, process.env.JWT_SECRET, {expiresIn: 20 * 60});
+            res.cookie('accessToken', newAccessToken);
+            req.cookies.accessToken = newAccessToken;
+            req.user = user;
+            return next();
+        }
+    }   else{
+        if(refreshVerified===TOKEN_EXPIRED){
+            console.log('Access good, refresh EXPIRED');
+            const newRefreshToken = jwt.sign({}, process.env.JWT_SECRET, {expiresIn : 14 * 24 * 60 * 60});
+            user.refreshToken = newRefreshToken;
+            await user.save();
+            res.cookie('refreshToken', newRefreshToken);
+            req.cookies.refreshToken = newRefreshToken;
+            req.user = user;
+            return next();
+        } else{
+            req.user = user;
+            return next();
+        }
+    }
 };
 
 const getHTML = async (ticker) => {
