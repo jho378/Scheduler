@@ -22,9 +22,10 @@ router.post('/submit', async (req, res) => {
     const refreshToken = jwt.sign({}, process.env.JWT_SECRET, {expiresIn : 14 * 24 * 60 * 60});
     user.refreshToken = refreshToken;
     await user.save();
-    const accessToken = jwt.sign({id, firstName}, process.env.JWT_SECRET, {expiresIn: 30*60});
-    res.cookie('accessToken', accessToken, {httpOnly : true});
-    res.cookie('refreshToken', refreshToken, {httpOnly : true});
+    const accessToken = jwt.sign({id, firstName}, process.env.JWT_SECRET, {expiresIn: 20 * 60});
+    // res.cookie('accessToken', accessToken, {httpOnly : true});
+    res.cookie('accessToken', accessToken, {sameSite : true, httpOnly : true});
+    res.cookie('refreshToken', refreshToken, {sameSite : true, httpOnly : true});
 
     // const pub = encryptPassword(crypto.randomBytes(20));
     // const sec = encryptPassword(crypto.randomBytes(20));
