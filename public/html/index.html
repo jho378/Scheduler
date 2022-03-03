@@ -75,14 +75,16 @@
         <div class="modal_overlay"></div>
         <div class="modal_inner">
             <h1>Add Calendar</h1>
-            <div class='schedule_starting_date'>Schedule Starting Date : <input type="date" id="schedule_starting_date" name="schedule_starting_date"></div>
-            <div class='schedule_finishind_date'>Schedule Finishing Date : <input type="date" id="schedule_finishing_date" name="schedule_finishing_date"></div>
-            <div class="schedule_title"> Title : <input type='text' name="schedule_title" placeholder="Two prolem solutions"></div>
-            <div class="schedule_description">Description</div>
-            <textarea name="schedule_description" cols="50" rows="6" placeholder="Write your plan on detail (i.e Solve one data structure problem and one algorithm)"></textarea><br>
-            <button class="saveBtn">click here to save</button>
-            <!-- <button class="cancelBtn"><img src="img/cancel.png" class="cancelBtn"></button> -->
-            <img src="../img/cancel.png" class="cancelBtn">
+            <form action="/schedules/create" method= "post">
+                <div class='schedule_starting_date'>Schedule Starting Date : <input type="date" id="schedule_starting_date" name="schedule_starting_date"></div>
+                <div class='schedule_finishind_date'>Schedule Finishing Date : <input type="date" id="schedule_finishing_date" name="schedule_finishing_date"></div>
+                <div class="schedule_title"> Title : <input type='text' name="schedule_title" placeholder="Two prolem solutions"></div>
+                <div class="schedule_description">Description</div>
+                <textarea name="schedule_description" cols="50" rows="6" placeholder="Write your plan on detail (i.e Solve one data structure problem and one algorithm)"></textarea><br>
+                <button class="saveBtn">click here to save</button>
+                <!-- <button class="cancelBtn"><img src="img/cancel.png" class="cancelBtn"></button> -->
+                <img src="../img/cancel.png" class="cancelBtn">
+            </form>
         </div>
     </div>
     <div class='progress'>

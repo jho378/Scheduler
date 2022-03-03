@@ -135,6 +135,21 @@ const scheduleFinishingDate = document.querySelector('#schedule_finishing_date')
 scheduleStartingDate.value = new Date().toISOString().substring(0, 10);
 scheduleFinishingDate.value = new Date().toISOString().substring(0, 10);
 
+saveBtn.addEventListener("keyup", (event)=> {
+    if(event.keyCode===13){
+        event.preventDefault();
+        saveBtn.click();
+    }
+})
+
+
+const synchronizeFinishDate = () => {
+    scheduleFinishingDate.value = scheduleStartingDate.value;
+}
+scheduleStartingDate.addEventListener('change', synchronizeFinishDate);
+
+
+
 const openAddModal = () => {
     modal.classList.remove('hidden')
 }
