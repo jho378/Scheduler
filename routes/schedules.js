@@ -7,7 +7,14 @@ const { Schedule, User } = require('../models');
 // creating a schedule
 router.post('/create', setAuth, async (req, res) => {
     const user = req.user;
-    const { date, title, description, period } = req.body;
+    const title = req.body.schedule_title;
+    const description = req.body.schedule_description;
+    const date = req.body.schedule_starting_date;
+    const startingDate = req.body.schedule_starting_date;
+    const finishingDate = req.body.schedule_finishing_date;
+    const period = (finishingDate - startingDate) / (24*60*60*1000);
+    // const { date, title, description, period } = req.body;
+    console.log(req.body)
     const id = (await Schedule.countDocuments({ user })) + 1;
     const schedule = new Schedule({
         date,
@@ -20,7 +27,8 @@ router.post('/create', setAuth, async (req, res) => {
         isDeleted: false,
     });
     await schedule.save();
-    return res.send(schedule);
+    // return res.send(schedule);
+    return res.redirect('/')
 });
 // reading schedules
 router.get('/', setAuth, async (req, res) => {
