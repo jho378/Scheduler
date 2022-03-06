@@ -23,6 +23,8 @@ const { getHTML, parsing, encryptPassword, setAuth } = require('./utils');
 const app = express();
 const port = 3000;
 
+app.set('view engine', 'pug');
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
