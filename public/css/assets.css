@@ -1,0 +1,104 @@
+body{
+    background-color : rgb(19, 23, 34);
+}
+
+.portfolio{
+    display: flex;
+    flex-direction : column;
+    width : 110rem;
+    margin : auto;
+}
+.portfolio_header{
+    height : 30rem;
+    display : flex;
+    flex-direction : row;
+}
+.portfolio_header_left{
+    width : 80rem;
+    border : 1px solid white;
+}
+.year_month{
+    position : relative;
+    height : 5rem;
+    border : 1px solid white;
+    color : #fff;
+    font-size : 3rem;
+}
+.year_month span{
+    position : absolute;
+    left : 0;
+    bottom : 0;
+}
+.portfolio_logos{
+    height : 25rem;
+}
+.portfolio_header_right{
+    width : 30rem;
+    border : 1px solid white;
+}
+main{
+    height : 125rem;
+    border : 1px solid white;
+    display : flex;
+    flex-direction : column;
+}
+.portfolio_whole{
+    display : flex;
+    flex-direction : row;
+    height : 60rem;
+    border : 1px solid white;
+}
+.portfolio_current{
+    display : flex;
+    width : 60rem;
+    flex-direction : column;
+    border : 1px solid white;
+}
+.portfolio_brief_stats{
+    height : 20rem;
+    border : 1px solid white;
+    margin-bottom : 3rem;
+}
+.portfolio_donutchart{
+    height : 37rem;
+    border : 1px solid white; 
+}
+.portfolio_individual{
+    width : 48rem;
+    margin-left : 1.75rem;
+    border : 1px solid white;
+}
+.portfolio_dividend{
+    height : 30rem;
+    display : flex;
+    border : 1px solid white;
+}
+.dividend_bargraph{
+    width : 50rem;
+    border : 1px solid white;
+}
+.dividend_upcoming{
+    width : 20rem;
+    border : 1px solid white;
+}
+.dividend_portion{
+    width : 40rem;
+    border : 1px solid white;
+}
+.portfolio_aside{
+    display : flex;
+    height : 20rem;
+    border : 1px solid white;
+}
+.portfolio_news{
+    width : 50rem;
+    border : 1px solid white;
+}
+.portfolio_interests{
+    width : 60rem;
+    border : 1px solid white;
+}
+.earnings_calendar{
+    height : 15rem;
+    border : 1px solid white;
+}
