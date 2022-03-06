@@ -3,12 +3,13 @@
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <link rel='stylesheet' href='common.css'>
+    <link rel='stylesheet' href='../css/common.css'>
+    <link rel="stylesheet" href="../css/assets.css">
     <script src="https://kit.fontawesome.com/4e72769f7c.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap" rel="stylesheet">
     <title>Planner</title>
-    <script src='/js/main.js' defer></script>
-    
+    <!-- <script src="../js/main.js" defer></script> -->
+    <script src="../js/assets.js" defer></script>
 </head>
 <body>
     <nav class='navbar'>
@@ -44,10 +45,30 @@
     </nav>
     <div class="portfolio">
         <div class="portfolio_header">
-            <div class="cal_year-month"></div>
-            <ul class='mustdolist'>Must do list
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>     
+            <div class="portfolio_header_left">
+                <div class="year_month"></div>
+                <div class="portfolio_logos"></div>
+            </div>
+            <div class="portfolio_header_right"></div>
         </div>
+        <main>
+            <div class="portfolio_whole">
+                <div class="portfolio_current">
+                    <div class="portfolio_brief_stats"></div>
+                    <div class="portfolio_donutchart"></div>
+                </div>
+                <div class="portfolio_individual"></div>
+            </div>
+            <div class="portfolio_dividend">
+                <div class="dividend_bargraph"></div>
+                <div class="dividend_upcoming"></div>
+                <div class="dividend_portion"></div>
+            </div>
+            <div class="portfolio_aside">
+                <div class="portfolio_news"></div>
+                <div class="portfolio_interests"></div>
+            </div>
+            <div class="earnings_calendar"></div>
+        </main>
+    </div>
+</body>
