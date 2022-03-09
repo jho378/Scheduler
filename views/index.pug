@@ -1,0 +1,94 @@
+html
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width-device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="../css/common.css")
+        script(src="https://kit.fontawesome.com/4e72769f7c.js", crossorigin="anonymous")
+        link(href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fredoka+One&display=swap", rel="stylesheet")
+        title Planner
+        link(rel="icon", type="image/x-icon", href="../img/favicon.png")
+        script(src="../js/main.js", defer)
+    body
+        nav.navbar
+            div.navbar_logo
+                i.fas.fa-globe
+                a(href="/") 2022 Planner
+            ul.navbar_menu
+                each val in ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+                    li: a(href="/"+val) #{val}
+            ul.navbar_icons
+                li: a(href="/assets"): i.fas.fa-dollar-sign
+                li: a(href="/books"): i.fas.fa-book-open
+                li: a(href="/workouts"): i.fas.fa-dumbbell
+                li: a(href="/"): i.fas.fa-laptop-code
+                li: a(href="/traveler"): i.fas.fa-plane
+                li: a(href="/buckerlist"): i.fas.fa-list
+            a.navbar_toggleBtn(href="#")
+                i.fas.fa-bars
+        main
+            div.calendar
+                div.cal_header
+                    div.cal_year-month
+                    ul.mustdolist Must do list
+                        img.addmustdolist(src="../img/mustdolistplus.svg") 
+                        li#mustdolist
+                        li#mustdolist
+                        li#mustdolist
+                div.control
+                    button.addList.right-items
+                        img(src="../img/whiteplus.png")
+                        br
+                        | Add Calendar
+                    button.deleteList.right-items
+                        img(src="../img/delete.png")
+                        br
+                        | Delete Schedule
+                div.main
+                    div.days
+                        each days in ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
+                            div.day #{days}
+                    div.dates
+        div.modal.hidden
+            div.modal_overlay
+            div.modal_inner
+                h1 Add Calendar
+                form(action="/schedules/create", methood="post")
+                    div.schedule_starting_date  Schedule Starting Date : 
+                        input#schedule_starting_date(type="date", name="schedule_starting_date")
+                    div.schedule_finishing_date Schedule Finishing Date : 
+                        input#schedule_finishing_date(type="date" name="schedule_finishing_date")
+                    div.schedule_title Title : 
+                        input(type="text", name="schedule_title" placeholder="Two problem solutions")
+                    div.schedule_description Description
+                    textarea(name="schedule_description", cols="50", row="6", placeholder="Write your plan on detail (i.e Solve one data structure problem and one algorithm)")
+                    br
+                    button.saveBtn click here to save
+                    img.cancelBtn(src="../img/cancel.png")
+        div.progress
+            div
+                label(for="book")
+                    span.lang -Read 40 books
+                    span.percent 49%
+                progress#book(value="49", max="100") 49%
+                br
+            div
+                label(for="health")
+                    span.lang -20 times a month
+                    span.percent 30%
+                progress#health(value="30", max="100") 30%
+                br
+            div
+                label(for="drawing")
+                    span.lang - Draw 30 paintings
+                    span.percent 72%
+                progress#drawing(value="72" max="100") 72%
+        footer
+            div.footer_bar
+                div.ico
+                    a(href="/about"): img(src="../img/favicon.png")
+                ul.footer_menu
+                    li.about: a(href="/about") Traveler 2022
+                    li.contact: a(href="/contact") Contact
+                    li.location: a(href="/location") Location
+                    li.account: a(href="/account") Account
+                div
