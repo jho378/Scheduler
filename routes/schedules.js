@@ -18,6 +18,7 @@ router.post('/create', setAuth, async (req, res) => {
     const startDate = new Date(startYear, startMonth, startDay);
     const finishDate = new Date(finishYear, finishMonth, finishDay);
     const period = (finishDate - startDate) / (24*60*60*1000) + 1;
+    
     // const { date, title, description, period } = req.body;
     // console.log(req.body)
     const id = (await Schedule.countDocuments({ user })) + 1;
@@ -34,7 +35,7 @@ router.post('/create', setAuth, async (req, res) => {
     console.log(schedule);
     await schedule.save();
     // return res.send(schedule);
-    return res.redirect('/')
+    return res.redirect('/');
 });
 // reading schedules
 router.get('/', setAuth, async (req, res) => {
@@ -76,7 +77,7 @@ router
             });
         } catch (err) {
             return res.status(400).send({
-                error: 'Error found when showing the book. Ask admin.',
+                error: 'Error found when showing the schedules. Ask admin.',
             });
         }
     })

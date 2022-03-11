@@ -148,8 +148,6 @@ const synchronizeFinishDate = () => {
 }
 scheduleStartingDate.addEventListener('change', synchronizeFinishDate);
 
-
-
 const openAddModal = () => {
     modal.classList.remove('hidden')
 }
@@ -171,3 +169,62 @@ const handleAddMustDoList = (event) => {
     else alert('maximum of 3 must-do-lists permitted');
 }
 addMustDoList.addEventListener('click', handleAddMustDoList)
+
+let schedules = [];
+let str = "";
+fetch('/hidden').then(res => res.json()).then((json) => json.forEach(schedule => {
+    
+    const date = schedule.date;
+    const title = schedule.title;
+    const description = schedule.description;
+    let _date = String(schedule.date);
+    
+    _date = _date.slice(8, 10);
+    _date = String(Number(_date));
+    // const day = String(parseInt(_day));
+    const dates = document.querySelectorAll('.date');
+    const datesSpan = document.querySelectorAll('.date span');
+    
+    // console.log(dates);
+    for(let i=0; i<dates.length; i++){
+        const det = dates[i].innerText.split('\n')[0];
+        if(det === _date){
+            dates[i].innerHTML += `<ul><li class="schedule"><img src="../img/done.png">${title}</li>`;
+        }
+        // if(dates[i].innerText===_date){
+        //     dates[i].innerHTML += `<ul><li class="schedule"><img src="../img/done.png">${title}</li>`;
+        // }
+    }    
+}));
+
+// for(let i=0; i<schedules.length; i++){
+//     console.log(i);
+//     const schedule = schedules[i];
+//     const date = schedule['date'];
+//     const title = schedule['title'];
+//     const description = schedule['description'];
+//     let _date = String(schedule['date']);
+//     _date = _date.split(' ').slice(1,4);
+    
+//     const _day = _date[1];
+//     const day = String(parseInt(_day));
+//     const dates = document.querySelectorAll('.date');
+    
+//     if(dates.innerText===day){
+//         dates.innerHTML += `<ul><li class="schedule"><img src="../img/done.png">${title}</li>`
+//         continue;
+//     }
+// }
+
+
+    // const handleDateClick = (event) => {
+    //     console.log(event.target.innerHTML);
+    //     event.target.innerHTML+=`<ul><li class='schedule'><img src="../img/done.png">JAVASCRIPT 코딩하기</li><li class='schedule'>JAVASCRIPT 코딩하기</li></ul>`
+    //     console.log(event.target.innerHTML);
+    // }
+    // date.forEach(e => e.addEventListener('click', handleDateClick));
+    
+    // const handleDeleteClick = () => {
+    //     const schedules = document.querySelectorAll('.schedule');
+    
+    // }

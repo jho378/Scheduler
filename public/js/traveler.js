@@ -25,8 +25,15 @@ const unhoverCountry = (event) => {
 countries.forEach(e => e.addEventListener('mouseover', hoverCountry));
 countries.forEach(e => e.addEventListener('mouseout', unhoverCountry));
 
+// const controlSpan = document.querySelector('.controlBtn span');
+const controlInput = document.querySelector('.controlBtn input');
 
-
+const changeControlSpan = (event) => {
+    const controlSpan = document.querySelector('.controlBtn span');
+    if(controlSpan.innerText==="Color visited countries") controlSpan.innerText = "Discolor visitied countries";
+    else controlSpan.innerText = "Color visited countries"; 
+}
+controlInput.addEventListener('click', changeControlSpan);
 
 
 // const fs =require('fs');
