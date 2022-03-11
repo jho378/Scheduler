@@ -31,7 +31,23 @@ body{
 }
 .portfolio_logos{
     height : 25rem;
+    position : relative;
 }
+
+.portfolio_logos .my_logos{
+    position : absolute;
+    left : 5rem; 
+    bottom : 0;
+    text-align : center;
+    width : 25rem;
+    height : 5rem;
+    border : 1px solid white;
+    color : white;
+    font-size : 4rem;
+    transform : rotate(270deg);
+    transform-origin : bottom left;
+}
+
 .portfolio_header_right{
     width : 30rem;
     border : 1px solid white;
@@ -55,12 +71,79 @@ main{
     border : 1px solid white;
 }
 .portfolio_brief_stats{
-    height : 20rem;
+    display : flex;
+    flex-direction : column;
+    height : 27rem;
     border : 1px solid white;
-    margin-bottom : 3rem;
+    margin-bottom : 1rem;
 }
+
+.portfolio_brief_stats #username{
+    color : white;
+    height : 4rem;
+    font-size : 2rem;
+    border : 1px solid white;
+    padding-left : 1.5rem;
+}
+
+.total_asset{
+    border : 1px solid white;
+    padding-left : 1.5rem;
+    margin-top : 0.5rem;
+    height : 7.5rem;
+    font-size : 2rem;
+    color : white;
+}
+.total_asset span{
+    font-size : 4rem;
+}
+
+.total_investment{
+    border : 1px solid white;
+    padding-left : 1.5rem;
+    color : white;
+    margin-top : 0.5rem;
+    height : 6.5rem;
+    font-size : 2rem;
+}
+.total_investment span{
+    font-size : 3.2rem;
+}
+.brief_stats{
+    margin : 0 1.5rem 0 1.5rem;
+    /* color : #727D86; */
+    /* color : #c6c6c6; */
+    color : #727D86;
+    display : flex;
+    flex-direction : row;
+    justify-content : space-between;
+    align-items : center;
+    border : 1px solid white;
+    margin-top : 0.5rem;
+    height : 7.5rem;
+}
+.roa, .apr, .annual_div, .div_rate{
+    border-left : 1px solid white;
+    padding-left : 0.4rem;
+    font-size : 2rem;
+}
+.roa span, .apr span, .annual_div span, .div_rate span{
+    /* color : white; */
+    
+    color : #cfcdda;
+}
+
+
+
+
+
+
+
+
+
+
 .portfolio_donutchart{
-    height : 37rem;
+    height : 32rem;
     border : 1px solid white; 
 }
 .portfolio_individual{
