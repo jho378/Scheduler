@@ -362,6 +362,7 @@ input[name="schedule_title"]{
 textarea[name="schedule_description"]{
     flex-shrink : 1;
     max-height : 40%;
+    min-height : 7rem;
     font-size:1.125rem;
 }
 
