@@ -54,7 +54,7 @@ const setAuth = async (req, res, next) => {
         }   else{
             console.log('Access expired, refresh good');
             const newAccessToken = jwt.sign({id : user.id, firstName : user.firstName}, process.env.JWT_SECRET, {expiresIn: 20 * 60});
-            res.cookie('accessToken', newAccessToken);
+            res.cookie('accessToken', newAccessToken, {sameSite : true, httpOnly : true});
             req.cookies.accessToken = newAccessToken;
             req.user = user;
             return next();
@@ -65,7 +65,7 @@ const setAuth = async (req, res, next) => {
             const newRefreshToken = jwt.sign({}, process.env.JWT_SECRET, {expiresIn : 14 * 24 * 60 * 60});
             user.refreshToken = newRefreshToken;
             await user.save();
-            res.cookie('refreshToken', newRefreshToken);
+            res.cookie('refreshToken', newRefreshToken, {sameSite : true, httpOnly : true});
             req.cookies.refreshToken = newRefreshToken;
             req.user = user;
             return next();
