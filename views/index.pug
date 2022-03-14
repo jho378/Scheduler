@@ -12,10 +12,10 @@ html
         nav.navbar
             div.navbar_logo
                 i.fas.fa-globe
-                a(href="/") 2022 Planner
+                a(href="/"+ year + "/JAN") #{year} Traveler
             ul.navbar_menu
                 each val in ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
-                    li: a(href="/"+val) #{val}
+                    li: a(href="/" + year + "/" + val) #{val}
             ul.navbar_icons
                 li: a(href="/assets"): i.fas.fa-dollar-sign
                 li: a(href="/books"): i.fas.fa-book-open
@@ -52,7 +52,7 @@ html
             div.modal_overlay
             div.modal_inner
                 h1 Add Calendar
-                form(action="/schedules/create", methood="post")
+                form(action="/schedules/create", method="post")
                     div.schedule_starting_date  Schedule Starting Date : 
                         input#schedule_starting_date(type="date", name="schedule_starting_date")
                     div.schedule_finishing_date Schedule Finishing Date : 

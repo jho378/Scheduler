@@ -203,7 +203,7 @@ main{
 .date:hover{
     background-color: #B0C4DE;
     cursor : pointer;
-    z-index : 100;
+    z-index : 1;
 }
 .day:nth-child(7n + 1),
 .date:nth-child(7n + 1) {
@@ -314,6 +314,7 @@ img[src="../img/mustdolistplus.svg"]{
 
 .modal{
     position : fixed;
+    z-index : 2;
     top:0;
     left:0;
     width: 100%;

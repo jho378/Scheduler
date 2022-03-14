@@ -32,10 +32,12 @@ router.post('/create', setAuth, async (req, res) => {
         isDone: false,
         isDeleted: false,
     });
-    console.log(schedule);
+    console.log(String(date));
+    const scheduleYr = String(date).slice(0,4);
+    const scheduleMth = months[Number(String(date).slice(5,7)) - 1];
     await schedule.save();
     // return res.send(schedule);
-    return res.redirect('/');
+    return res.redirect(`/${scheduleYr}/${scheduleMth}`);
 });
 // reading schedules
 router.get('/', setAuth, async (req, res) => {

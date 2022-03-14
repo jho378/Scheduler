@@ -67,16 +67,7 @@ app.get('/traveler', (req, res) => {
     })
 })
 
-app.get('/:month', async(req, res) => {
-    fs.readFile(__dirname + "/public/index.html", (err, data) => {
-        if(err){
-            console.log('error occured at path /:month');
-            res.status(400).send('Invalid Month');
-        }   else{
-            res.end(data);
-        }
-    })
-})
+
 
 app.listen(port, () => {
     console.log(`listening at port: ${port}`);
