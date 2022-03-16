@@ -202,6 +202,16 @@ const handleDateClick = (event) => {
 }
 date.forEach(e => e.addEventListener('click', handleDateClick));
 
+// 더블 클릭 방지
+const preventDoubleClick = () => {
+    saveBtn.setAttribute('disabled', 'disabled');
+    saveBtn.value = 'Submitting... Please wait...'
+}
+
+const calendarForm = document.querySelector('#calendarForm');
+calendarForm.addEventListener('submit', preventDoubleClick);
+
+
 saveBtn.addEventListener("keyup", (event)=> {
     if(event.keyCode===13){
         event.preventDefault();
@@ -265,29 +275,28 @@ fetch(`/hidden/${calYr}/${calMth}`).then(res => res.json()).then((json) => json.
         if(dates[i].firstChild.classList.contains('this')){
             if(det===_date && month.indexOf(calMth) + 1 === _mth){
                 dates[i].innerHTML += `<ul><li class="schedule"><img src="../img/done.png">${title}</li>`;
-                console.log(dates[i].firstChild.classList.contains('this'))
-                console.log(1, title, calMth, det, _mth, _date)            
+                // console.log(dates[i].firstChild.classList.contains('this'))
+                // console.log(1, title, calMth, det, _mth, _date)            
             } 
         }   else {
             // 달력이 현재 한달이 더 빠르고 , 일정이 저번 달의 것일 때
             if(det === _date && month.indexOf(calMth) === _mth){
                 if(Number(_date)>20){
                     dates[i].innerHTML += `<ul><li class="schedule"><img src="../img/done.png">${title}</li>`;
-                    console.log(dates[i].firstChild.classList.contains('this'))
-                    console.log(2, title, calMth, det, _mth, _date)
+                    // console.log(dates[i].firstChild.classList.contains('this'))
+                    // console.log(2, title, calMth, det, _mth, _date)
                 }
             }   else if(det === _date){
                 // 달력이 현재 한달이 더 느리고, 일정이 다음 달의 것일 때
                 if(Number(_date)<7){
                     dates[i].innerHTML += `<ul><li class="schedule"><img src="../img/done.png">${title}</li>`;
-                    console.log(dates[i].firstChild.classList.contains('this'))
-                    console.log(3, title, calMth, det, _mth, _date)
+                    // console.log(dates[i].firstChild.classList.contains('this'))
+                    // console.log(3, title, calMth, det, _mth, _date)
                 } 
             }
-        }
-            
-        }
-    }));
+        }        
+    }
+}));
         // if(dates[i].innerText===_date){
         //     dates[i].innerHTML += `<ul><li class="schedule"><img src="../img/done.png">${title}</li>`;
         // }

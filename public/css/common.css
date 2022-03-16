@@ -375,6 +375,9 @@ textarea[name="schedule_description"]{
     font-size : 2rem;
     border-radius: 2rem;
 }
+.saveBtn:disabled{
+    opacity : 0.5;
+}
 .cancelBtn{
     color: white;
     cursor : pointer;

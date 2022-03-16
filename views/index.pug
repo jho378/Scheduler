@@ -52,7 +52,7 @@ html
             div.modal_overlay
             div.modal_inner
                 h1 Add Calendar
-                form(action="/schedules/create", method="post")
+                form(action="/schedules/create", method="post" id="calendarForm")
                     div.schedule_starting_date  Schedule Starting Date : 
                         input#schedule_starting_date(type="date", name="schedule_starting_date")
                     div.schedule_finishing_date Schedule Finishing Date : 
@@ -62,7 +62,7 @@ html
                     div.schedule_description Description
                     textarea(name="schedule_description", cols="50", row="6", placeholder="Write your plan on detail (i.e Solve one data structure problem and one algorithm)")
                     br
-                    button.saveBtn click here to save
+                    button.saveBtn(type="submit") click here to save
                     img.cancelBtn(src="../img/cancel.png")
         div.progress
             div
