@@ -114,12 +114,23 @@ if (URLSearch[1].length === 0) {
 const dates = document.querySelector('.dates');
 // if()
 
+const schedules = document.querySelectorAll('.schedule');
+
+const scheduleRightClick = (event) => {
+    console.log(event);
+}
+
+schedules.forEach(e => e.addEventListener('mousedown', scheduleRightClick));
 const handleDeleteClick = () => {
-    const schedules = document.querySelectorAll('.schedule');
 
 }
 const deleteBtn = document.querySelector('.deleteList');
 deleteBtn.addEventListener('click',handleDeleteClick);
+
+
+
+
+
 
 const addBtn = document.querySelector('.addList');
 const modal = document.querySelector('.modal')
@@ -161,13 +172,13 @@ const handleDateClick = (event) => {
     const calYr = _calYearMonth.split(' ')[0];
     const calMth = String(month.indexOf(_calYearMonth.split(' ')[1]) + 1);
     const target = event.target.innerHTML; // span inside the div date 
-    const targetDay = event.target.innerText;
-    
-    console.log(target.includes('other'));
+    console.log(target)
+    const targetDay = event.target.firstChild.innerText || event.target.parentNode.parentNode.firstChild.innerText;
+    console.log(targetDay)
     // 해당 페이지의 연 월이 아닐 경우, 다음달이나 저번달
-    if(target.includes('other')){
+    if(target.includes('other') || (!target.includes('this') && event.target.parentNode.parentNode.firstChild.classList.contains('other'))){
         // 다음달
-        if(Number(event.target.innerText)<10){
+        if(Number(targetDay)<10){
             // 12월일 경우, 다음 달이 내년
             if(calMth==='12'){
                 scheduleStartingDate.value = String(Number(calYr)+1) + '-' + '01' + '-' + targetDay.padStart(2, '0');
@@ -176,7 +187,8 @@ const handleDateClick = (event) => {
             const nextMth = String(Number(calMth) + 1);
             console.log(nextMth);
             scheduleStartingDate.value = calYr + '-' + nextMth.padStart(2, '0') + '-' + targetDay.padStart(2, '0');
-            scheduleFinishingDate.value = calYr + '-' + nextMth.padStart(2, '0') + '-' + targetDay.padStart(2, '0');    
+            scheduleFinishingDate.value = calYr + '-' + nextMth.padStart(2, '0') + '-' + targetDay.padStart(2, '0'); 
+            console.log(nextMth, targetDay)   
             }
         } 
         // 저번 달
@@ -194,6 +206,7 @@ const handleDateClick = (event) => {
     }   
     // 실제 현재 있는 페이지의 연월일 경우
     else{
+        console.log(scheduleStartingDate, calYr, calMth.padStart(2,'0'), targetDay.padStart(2, '0'));   
         scheduleStartingDate.value = calYr + '-' + calMth.padStart(2, '0') + '-' + targetDay.padStart(2, '0');
         scheduleFinishingDate.value = calYr + '-' + calMth.padStart(2, '0') + '-' + targetDay.padStart(2, '0');
     }
@@ -202,15 +215,18 @@ const handleDateClick = (event) => {
 }
 date.forEach(e => e.addEventListener('click', handleDateClick));
 
+
+
+
 // 더블 클릭 방지
 const preventDoubleClick = () => {
     saveBtn.setAttribute('disabled', 'disabled');
     saveBtn.value = 'Submitting... Please wait...'
 }
 
+const scheduleTitle = document.querySelector('input[name="schedule_title"]');
 const calendarForm = document.querySelector('#calendarForm');
 calendarForm.addEventListener('submit', preventDoubleClick);
-
 
 saveBtn.addEventListener("keyup", (event)=> {
     if(event.keyCode===13){
@@ -218,6 +234,14 @@ saveBtn.addEventListener("keyup", (event)=> {
         saveBtn.click();
     }
 })
+
+const preventNoTitle = (event) => {
+    if(scheduleTitle.value===""){
+        event.preventDefault();
+        scheduleTitle.classList.add("titleRequired");
+    }
+}
+saveBtn.addEventListener("click", preventNoTitle);
 
 
 const synchronizeFinishDate = () => {
@@ -230,6 +254,9 @@ const openAddModal = () => {
 }
 const closeAddModal = () => {
     modal.classList.add('hidden');
+    if(scheduleTitle.classList.contains('titleRequired')){
+        scheduleTitle.classList.remove('titleRequired');
+    }
 }
 
 overlay.addEventListener('click', closeAddModal);
@@ -247,7 +274,6 @@ const handleAddMustDoList = (event) => {
 }
 addMustDoList.addEventListener('click', handleAddMustDoList)
 
-let schedules = [];
 let str = "";
 
 const calYr = calYearMonth.innerText.split(' ')[0];
@@ -274,24 +300,18 @@ fetch(`/hidden/${calYr}/${calMth}`).then(res => res.json()).then((json) => json.
 
         if(dates[i].firstChild.classList.contains('this')){
             if(det===_date && month.indexOf(calMth) + 1 === _mth){
-                dates[i].innerHTML += `<ul><li class="schedule"><img src="../img/done.png">${title}</li>`;
-                // console.log(dates[i].firstChild.classList.contains('this'))
-                // console.log(1, title, calMth, det, _mth, _date)            
+                dates[i].innerHTML += `<ul><li class="schedule"><img src="../img/done.png">${title}</li>`;         
             } 
         }   else {
             // 달력이 현재 한달이 더 빠르고 , 일정이 저번 달의 것일 때
             if(det === _date && month.indexOf(calMth) === _mth){
                 if(Number(_date)>20){
                     dates[i].innerHTML += `<ul><li class="schedule"><img src="../img/done.png">${title}</li>`;
-                    // console.log(dates[i].firstChild.classList.contains('this'))
-                    // console.log(2, title, calMth, det, _mth, _date)
                 }
             }   else if(det === _date){
                 // 달력이 현재 한달이 더 느리고, 일정이 다음 달의 것일 때
                 if(Number(_date)<7){
                     dates[i].innerHTML += `<ul><li class="schedule"><img src="../img/done.png">${title}</li>`;
-                    // console.log(dates[i].firstChild.classList.contains('this'))
-                    // console.log(3, title, calMth, det, _mth, _date)
                 } 
             }
         }        
