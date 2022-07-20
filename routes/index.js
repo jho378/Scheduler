@@ -24,7 +24,7 @@ router.get('/', setAuth, async(req, res) => {
             _schedules.push(schedule);
         }
         // console.log(_schedules)
-    }
+    } 
     
     res.render("index", {schedules : _schedules, year : now[3]});
 })

@@ -1,3 +1,4 @@
+
 body{
     background-color : rgb(19, 23, 34);
 }
@@ -5,10 +6,13 @@ body{
 .portfolio{
     display: flex;
     flex-direction : column;
+    flex-shrink : 1;
     width : 110rem;
     margin : auto;
 }
+
 .portfolio_header{
+    background-color : rgb(27,31,44);
     height : 30rem;
     display : flex;
     flex-direction : row;
@@ -52,6 +56,27 @@ body{
     width : 30rem;
     border : 1px solid white;
 }
+
+/* .portfolio_header_right  */
+
+table.market_indexes{
+    width : 100%;
+    height : 100%;
+    /* overflow : scroll; */
+    color : white;
+}
+table.market_indexes thead{
+    font-size : 1.5rem;
+}
+table.market_indexes thead th{
+    border-bottom : 1px solid #727D86;
+}
+table.market_indexes tbody{
+    font-size : 1.5rem;
+    /* color : #d49466;  */
+    color : rgb(207,205,218);
+}
+
 main{
     height : 125rem;
     border : 1px solid white;
@@ -59,6 +84,7 @@ main{
     flex-direction : column;
 }
 .portfolio_whole{
+    background-color : rgb(27,31,44);
     display : flex;
     flex-direction : row;
     height : 60rem;
@@ -146,11 +172,174 @@ main{
     height : 32rem;
     border : 1px solid white; 
 }
+/* 개별 종목들 집합 */
 .portfolio_individual{
     width : 48rem;
     margin-left : 1.75rem;
     border : 1px solid white;
+    display : flex;
+    flex-direction : column;
+    background-color : rgb(27,31,44);
 }
+
+
+/* 개별 종목 하나 */
+.portfolio_individual_header{
+    height : 15rem; 
+}
+#individual_asset_nav{
+    height : 4rem;
+    display : flex;
+    text-align : center;    
+    color : white; 
+    font-size : 2rem; 
+}
+#individual_asset_nav label{
+    width : 33%;
+}
+
+#individual_asset_nav label input{
+    display : none;
+}
+
+#individual_asset_nav label span{
+    flex : 1;
+    padding-top : 1rem; 
+    color : rgb(241,177,60);
+    cursor : pointer;
+}
+#individual_asset_nav label input:checked + span{
+    border-bottom : 1px solid rgb(241,177,60, .5);
+}
+#individual_asset_country{
+    display : flex;
+    height : 2.5rem;
+    margin-top : 1rem;
+}
+
+#individual_asset_country label{
+    width : 18%;
+    margin-left : 1rem;
+    cursor : pointer;
+}
+
+#individual_asset_country label:nth-child(2){
+    width : 10%;
+}
+#individual_asset_country label:nth-child(3){
+    width : 10%;
+}
+#individual_asset_country label:nth-child(4){
+    width : 10%;
+}
+#individual_asset_country label input{
+    display : none;
+}
+#individual_asset_country label span{
+    flex : 1;
+    padding-top : 0.2rem;
+    color : white; 
+    text-align : center; 
+    border : 1px rgb(32,38,55) solid;
+    background-color : rgb(32,38,55);
+    border-radius : 2rem;
+}
+#individual_asset_country label input:checked + span{
+    background-color : rgb(241,177,60);
+    color : black;
+}
+#individual_asset_control{
+    display : flex;
+    justify-content: space-between;
+}
+#individual_asset_sort{
+    margin-left : 1.3rem;
+    margin-top : 3.2rem; 
+    width : 20%;
+    height : 4rem;
+    outline : none;
+    background-color: rgb(32,38,55);
+    color : white; 
+    font-size : 1.2rem;
+}
+
+#individual_asset_edit_menu{
+    display : flex;
+    margin-right : 1.5rem; 
+}
+#individual_asset_edit_menu button{
+    background-color : transparent;
+    border : none;
+    cursor : pointer;
+}
+#edit{
+    color : white;
+    margin-top : 3rem;
+    font-size : 2.5rem;
+    margin-right : 2rem;
+}
+#add{
+    margin-top : 3rem;
+}
+#add img{
+    
+    max-width: 2.5rem;
+}
+
+/* 총 공간이 60rem */
+.individual_asset{
+    margin : 1rem;
+    background-color: rgb(32,38,55);
+    height : 12rem;
+    width : 46rem;
+    display : flex;
+    flex-direction : column;
+    border : 1px solid white;
+    border-bottom-right-radius : 4rem;
+}
+.individual_header{
+    display : flex;
+    height : 4.5rem; 
+}
+.individual_asset_image{
+    width : 4.5rem;
+    border : 1px solid white;
+}
+.individual_ticker{
+    display : inline-block;
+    padding-top : 1rem;
+    font-size : 1.5rem;
+    color : rgb(241,177,60);
+    border : 1px solid white;
+}
+.individual_sector{
+    display : inline-block;
+    padding-top : 1rem;
+    padding-left : 0.8rem;
+    font-size : 1.5rem;
+    color : rgb(241,177,60);
+    border : 1px solid white;
+}
+.individual_amount{
+    border : 1px solid white;
+    font-size : 1.5rem;
+    padding-top : 1rem;
+    padding-right : 2rem;
+    margin-left : auto;
+
+    color : #727D86;
+}
+.individual_amount span{
+    padding-left : 0.5rem;
+    color : white;
+}
+
+
+
+
+
+
+
 .portfolio_dividend{
     height : 30rem;
     display : flex;

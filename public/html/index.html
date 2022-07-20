@@ -32,12 +32,12 @@
             <li><a href="/DEC">DEC</a></li>
         </ul>
         <ul class='navbar_icons'>            
-            <li><a href="/assets"><i class="fas fa-dollar-sign"></i></a></li>
-            <li><a href="/books"><i class="fas fa-book-open"></i></a></li>
-            <li><a href="/workouts"><i class="fas fa-dumbbell"></i></a></li>
-            <li><a href=""><i class="fas fa-laptop-code"></i></a></li>
-            <li><a href="/traveler"><i class="fas fa-plane"></i></a></li>
-            <li><a href="/bucketlist"><i class="fas fa-list"></i></a></li>
+            <li><a href="/html/assets.html"><i class="fas fa-dollar-sign"></i></a></li>
+            <li><a href="/html/books.html"><i class="fas fa-book-open"></i></a></li>
+            <li><a href="/html/workouts.html"><i class="fas fa-dumbbell"></i></a></li>
+            <li><a href="/html/programmer.html"><i class="fas fa-laptop-code"></i></a></li>
+            <li><a href="/html/traveler.html"><i class="fas fa-plane"></i></a></li>
+            <li><a href="/html/bucketlist.html"><i class="fas fa-list"></i></a></li>
         </ul>
         <a href="#" class="navbar_toggleBtn">
             <i class="fas fa-bars"></i>        
@@ -47,10 +47,10 @@
         <div class="calendar">
             <div class="cal_header">
                 <div class="cal_year-month"></div>
-                <ul class='mustdolist'>Must do list <img src=../img/mustdolistplus.svg class="addmustdolist">
-                    <li id="mustdolist"></li>
-                    <li id="mustdolist"></li>
-                    <li id="mustdolist"></li>
+                <ul class='mustdolists'>Must do list <img src=../img/mustdolistplus.svg class="addmustdolist">
+                    <li class="mustdolist"></li>
+                    <li class="mustdolist"></li>
+                    <li class="mustdolist"></li>
                 </ul>     
             </div>
             <div class="control">
@@ -87,6 +87,20 @@
             </form>
         </div>
     </div>
+    
+    <div class="schedule-modal hidden">
+        <div class="schedule-modal_overlay"></div>
+        <div class="schedule-modal_inner">
+            <div class="schedule-control-title"></div>
+            <div class="schedule-control-done">Check</div>
+            <div class="schedule-control-detail">View detail</div>
+            <div class="schedule-control-copy">Copy paste</div>
+            <div class="schedule-control-edit">Edit schedule</div>
+            <div class="schedule-control-delete">Delete a schedule</div>
+        </div>
+    </div>
+
+
     <div class='progress'>
         <div>
         <label for='book'>

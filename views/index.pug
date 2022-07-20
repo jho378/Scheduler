@@ -29,11 +29,11 @@ html
             div.calendar
                 div.cal_header
                     div.cal_year-month
-                    ul.mustdolist Must do list
+                    ul.mustdolists Must do list
                         img.addmustdolist(src="../img/mustdolistplus.svg") 
-                        li#mustdolist
-                        li#mustdolist
-                        li#mustdolist
+                        li.mustdolist
+                        li.mustdolist
+                        li.mustdolist
                 div.control
                     button.addList.right-items
                         img(src="../img/whiteplus.png")
@@ -64,6 +64,15 @@ html
                     br
                     button.saveBtn(type="submit") click here to save
                     img.cancelBtn(src="../img/cancel.png")
+        div.schedule-modal.hidden
+            div.schedule-modal-overlay
+            div.schedule-modal-inner
+                div.schedule-control-title
+                div.schedule-control-done Schedule completed
+                div.schedule-control-detail View details
+                div.schedule-control-copy Copy paste
+                div.schedule-control-edit Edit schedule
+                div.schedule-control-delete Delete a schedule
         div.progress
             div
                 label(for="book")

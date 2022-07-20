@@ -51,7 +51,93 @@
                     <div class="my_logos">My Brands</div>
                 </div>
             </div>
-            <div class="portfolio_header_right"></div>
+            <div class="portfolio_header_right">
+                <table class="market_indexes">
+                    <thead>
+                        <tr>
+                            <th>Market Index</th>
+                            <th>Last Price</th>
+                            <th>Change(%)</th>
+                            <th>Price(1yr)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th class= "market_index">My portfolio</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th class= "market_index">S&P 500</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th class= "market_index">Nasdaq</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th class= "market_index">Kospi</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th class= "market_index">Kosdaq</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th class= "market_index">CMC Crypto 200</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th class= "market_index">Nikkei 225</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th class= "market_index">HangSeng Index</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th class="market_exchange">USD/KRW</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th class="market_exchange">EUR/KRW</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th class="market_exchange">JPY/KRW</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th class="market_exchange">CNY/KRW</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
         </div>
         <main>
             <div class="portfolio_whole">
@@ -69,7 +155,44 @@
                     </div>
                     <div class="portfolio_donutchart"></div>
                 </div>
-                <div class="portfolio_individual"></div>
+                <div class="portfolio_individual">
+                    <div class="portfolio_individual_header">
+                        <div id="individual_asset_nav">
+                            <label for="individual_asset_section"><input type="radio" name="type" id="individual_asset_section" value="asset" checked><span>My Asset</span></label>
+                            <label for="individual_asset_history_section"><input type="radio" name="type" id="individual_asset_history_section" value="history"><span>Trading History</span></label>
+                            <label for="individual_asset_statistics_section"><input type="radio" name="type" id="individual_asset_statistics_section" value="statistics"><span>Statistics</span></label>
+                        </div>
+                        <div id="individual_asset_country">
+                            <label for="individual_asset_entire"><input type="radio" name="asset_type" id="individual_asset_entire" value="asset_entire" checked><span>Entire Asset</span></label>
+                            <label for="individual_asset_kr"><input type="radio" name="asset_type" id="individual_asset_kr" value="asset_entire"><span>KR</span></label>
+                            <label for="individual_asset_us"><input type="radio" name="asset_type" id="individual_asset_us" value="asset_us"><span>US</span></label>
+                            <label for="individual_asset_coin"><input type="radio" name="asset_type" id="individual_asset_coin" value="asset_coin"><span>Coin</span></label>
+                        </div>
+                        <div id="individual_asset_control">
+                            <select name="sort" id="individual_asset_sort">
+                                <option value>Sort by..</option>
+                                <option value="name">Sort by name</option>
+                                <option value="value">Sort by value</option>
+                                <option value="profit">Sort by profit</option>
+                                <option value="loss">Sort by loss</option>
+                            </select>
+                            <div id="individual_asset_edit_menu">
+                                <button id="edit">Edit</button>
+                                <button id="add"><img src="../img/whiteplus.png"></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="individual_asset">
+                        <div class="individual_header">
+                            <div class="individual_asset_image"></div>
+                            <div class="individual_ticker">IONQ</div>
+                            <div class="individual_sector">Technology</div>
+                            <div class="individual_amount">Amount<span>3</span></div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
             <div class="portfolio_dividend">
                 <div class="dividend_bargraph"></div>

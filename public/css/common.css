@@ -58,7 +58,7 @@ a {
     padding: 1rem 0.75rem;
 }
 .navbar_logo {
-    font-size: 24px;
+    font-size: 1.5rem;
     color: white;
 }
 .navbar_logo i {
@@ -146,7 +146,7 @@ main{
 .cal_year-month {
     font-size: 2.25rem;
 }
-.mustdolist li {
+.mustdolists li {
     text-decoration: underline;
 }
 .days {
@@ -287,8 +287,15 @@ main{
     color : black;
     list-style: none;
     text-align:center;
-    font-size:16px;
+    font-size:1rem;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
     background-color: rgba(212,148,102, 0.6);
+    /* background-color : #E3F6BF; */
+    /* background-color : #C8EFFF; */
+    /* background-color : #E1E35E; */
+    background-color: rgba(38, 51, 67, 0.2);
     border-radius:3px;  
     margin-bottom: 1.5px;
 }
@@ -323,6 +330,7 @@ img[src="../img/mustdolistplus.svg"]{
     justify-content: center;
     align-items : center;
 }
+
 .modal_overlay{
     background-color: rgba(0,0,0,0.6);
     width: 100%;
@@ -350,10 +358,70 @@ img[src="../img/mustdolistplus.svg"]{
     display:none;
 }
 input[name="schedule_title"]{
+    outline : none;
     width:18rem;
     font-size:1.25rem;
     flex-shrink : 1;
 }
+.schedule-modal{
+    position : fixed;
+    z-index : 2;
+    width : 100%;
+    height : 100%;
+    display : flex;
+    /* justify-content : center;
+    align-items : center; */
+}
+.schedule-modal-overlay{
+    width: 100%;
+    height : 100%; 
+    position : absolute;
+}
+
+.schedule-modal-inner{
+    display : flex;
+    flex-direction : column;
+    font-size: 1.3rem;
+    background-color : #ccdce6;
+    background-color : rgba(59, 62, 64);
+    color : #fff;
+    padding : 0rem 0rem;
+    /* text-align: center; */
+    box-shadow : 0 0.625rem 1.25rem rgba(0,0,0,0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    position: relative; 
+    width : 12%;
+    height: 25%;
+    border-radius: 15px;
+}
+.schedule-modal-inner>*{
+    cursor: pointer;
+    height : 20%;
+}
+/* .schedule-control.done
+.schedule-control.detail
+.schedule-control.copy
+.schedule-control.edit
+.schedule-control.delete
+.schedule-control */
+
+.schedule-modal.hidden{
+    display : none;
+}
+.schedule-control-title{
+    border-bottom : 1px solid white;
+}
+
+
+.titleRequired{
+    animation : warning 0.3s ease;
+}
+@keyframes warning{
+    0% {transform : translateX(-6px);}
+    25% {transform : translateX(6px);}
+    50% {transform : translateX(-6px);}
+    75% {transform : translateX(6px);}
+}
+
 .schedule_description{
     flex-shrink : 1;
     width: 21.5rem;
@@ -361,6 +429,7 @@ input[name="schedule_title"]{
     text-align : left;
 }
 textarea[name="schedule_description"]{
+    outline : none;
     flex-shrink : 1;
     max-height : 40%;
     min-height : 7rem;

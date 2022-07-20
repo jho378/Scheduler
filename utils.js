@@ -34,7 +34,10 @@ const verify = (token) => {
     }
 }
 const setAuth = async (req, res, next) => {
-    if(req.cookies.accessToken===undefined) return res.status(400).send({error : 'No access token arrived to the server'});
+    if(req.cookies.accessToken===undefined){
+        // return res.redirect("html/signin.html")
+        return res.status(400).send({error : 'No access token arrived to the server'});
+    }
 
     const accessToken = req.cookies.accessToken;
     const refreshToken = req.cookies.refreshToken;

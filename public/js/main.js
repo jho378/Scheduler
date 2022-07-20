@@ -114,13 +114,10 @@ if (URLSearch[1].length === 0) {
 const dates = document.querySelector('.dates');
 // if()
 
-const schedules = document.querySelectorAll('.schedule');
 
-const scheduleRightClick = (event) => {
-    console.log(event);
-}
 
-schedules.forEach(e => e.addEventListener('mousedown', scheduleRightClick));
+
+
 const handleDeleteClick = () => {
 
 }
@@ -167,53 +164,59 @@ else {
 
 const date = document.querySelectorAll('.date');
 const handleDateClick = (event) => {
-    modal.classList.remove('hidden');
-    const _calYearMonth = calYearMonth.innerText;
-    const calYr = _calYearMonth.split(' ')[0];
-    const calMth = String(month.indexOf(_calYearMonth.split(' ')[1]) + 1);
-    const target = event.target.innerHTML; // span inside the div date 
-    console.log(target)
-    const targetDay = event.target.firstChild.innerText || event.target.parentNode.parentNode.firstChild.innerText;
-    console.log(targetDay)
-    // 해당 페이지의 연 월이 아닐 경우, 다음달이나 저번달
-    if(target.includes('other') || (!target.includes('this') && event.target.parentNode.parentNode.firstChild.classList.contains('other'))){
-        // 다음달
-        if(Number(targetDay)<10){
-            // 12월일 경우, 다음 달이 내년
-            if(calMth==='12'){
-                scheduleStartingDate.value = String(Number(calYr)+1) + '-' + '01' + '-' + targetDay.padStart(2, '0');
-                scheduleFinishingDate.value = String(Number(calYr)+1) + '-' + '01' + '-' + targetDay.padStart(2, '0');
-            }   else{
-            const nextMth = String(Number(calMth) + 1);
-            console.log(nextMth);
-            scheduleStartingDate.value = calYr + '-' + nextMth.padStart(2, '0') + '-' + targetDay.padStart(2, '0');
-            scheduleFinishingDate.value = calYr + '-' + nextMth.padStart(2, '0') + '-' + targetDay.padStart(2, '0'); 
-            console.log(nextMth, targetDay)   
+    // console.log(event.pageX);
+    
+    if ( event.which === 1 ){
+        console.log(event);
+        modal.classList.remove('hidden');
+        const _calYearMonth = calYearMonth.innerText;
+        const calYr = _calYearMonth.split(' ')[0];
+        const calMth = String(month.indexOf(_calYearMonth.split(' ')[1]) + 1);
+        const target = event.target.innerHTML; // span inside the div date 
+        console.log(target)
+        const targetDay = event.target.firstChild.innerText || event.target.parentNode.parentNode.firstChild.innerText;
+        console.log(targetDay)
+        // 해당 페이지의 연 월이 아닐 경우, 다음달이나 저번달
+        if(target.includes('other') || (!target.includes('this') && event.target.parentNode.parentNode.firstChild.classList.contains('other'))){
+            // 다음달
+            if(Number(targetDay)<10){
+                // 12월일 경우, 다음 달이 내년
+                if(calMth==='12'){
+                    scheduleStartingDate.value = String(Number(calYr)+1) + '-' + '01' + '-' + targetDay.padStart(2, '0');
+                    scheduleFinishingDate.value = String(Number(calYr)+1) + '-' + '01' + '-' + targetDay.padStart(2, '0');
+                }   else{
+                const nextMth = String(Number(calMth) + 1);
+                console.log(nextMth);
+                scheduleStartingDate.value = calYr + '-' + nextMth.padStart(2, '0') + '-' + targetDay.padStart(2, '0');
+                scheduleFinishingDate.value = calYr + '-' + nextMth.padStart(2, '0') + '-' + targetDay.padStart(2, '0'); 
+                console.log(nextMth, targetDay)   
+                }
+            } 
+            // 저번 달
+            else{
+                // 저번 달이 작년, 현재1월
+                if(calMth === '01'){
+                    scheduleStartingDate.value = String(Number(calYr - 1)) + '-' + '12' + '-' + targetDay.padStart(2, '0');
+                    scheduleFinishingDate.value = String(Number(calYr - 1)) + '-' + '12' + '-' + targetDay.padStart(2, '0');
+                } else {
+                    const prevMth = String(Number(calMth) - 1)
+                    scheduleStartingDate.value = calYr + '-' + prevMth.padStart(2, '0') + '-' + targetDay.padStart(2, '0');
+                    scheduleFinishingDate.value = calYr + '-' + prevMth.padStart(2, '0') + '-' + targetDay.padStart(2, '0');    
+                }
             }
-        } 
-        // 저번 달
+        }   
+        // 실제 현재 있는 페이지의 연월일 경우
         else{
-            // 저번 달이 작년, 현재1월
-            if(calMth === '01'){
-                scheduleStartingDate.value = String(Number(calYr - 1)) + '-' + '12' + '-' + targetDay.padStart(2, '0');
-                scheduleFinishingDate.value = String(Number(calYr - 1)) + '-' + '12' + '-' + targetDay.padStart(2, '0');
-            } else {
-                const prevMth = String(Number(calMth) - 1)
-                scheduleStartingDate.value = calYr + '-' + prevMth.padStart(2, '0') + '-' + targetDay.padStart(2, '0');
-                scheduleFinishingDate.value = calYr + '-' + prevMth.padStart(2, '0') + '-' + targetDay.padStart(2, '0');    
-            }
+            console.log(scheduleStartingDate, calYr, calMth.padStart(2,'0'), targetDay.padStart(2, '0'));   
+            scheduleStartingDate.value = calYr + '-' + calMth.padStart(2, '0') + '-' + targetDay.padStart(2, '0');
+            scheduleFinishingDate.value = calYr + '-' + calMth.padStart(2, '0') + '-' + targetDay.padStart(2, '0');
         }
-    }   
-    // 실제 현재 있는 페이지의 연월일 경우
-    else{
-        console.log(scheduleStartingDate, calYr, calMth.padStart(2,'0'), targetDay.padStart(2, '0'));   
-        scheduleStartingDate.value = calYr + '-' + calMth.padStart(2, '0') + '-' + targetDay.padStart(2, '0');
-        scheduleFinishingDate.value = calYr + '-' + calMth.padStart(2, '0') + '-' + targetDay.padStart(2, '0');
-    }
+    }// console.log(event.which);
+    
     
     
 }
-date.forEach(e => e.addEventListener('click', handleDateClick));
+date.forEach(e => e.addEventListener('mousedown', handleDateClick));
 
 
 
@@ -266,10 +269,10 @@ addBtn.addEventListener('click', openAddModal);
 const addMustDoList = document.querySelector('.addmustdolist');
 
 const handleAddMustDoList = (event) => {
-    const mustDoList = document.querySelectorAll('#mustdolist');
-    if(mustDoList[0].innerText.length===0) mustDoList[0].innerText = 'hello';
-    else if(mustDoList[1].innerText.length===0) mustDoList[1].innerText = 'hello';
-    else if(mustDoList[2].innerText.length===0) mustDoList[2].innerText = 'hello';
+    const mustDoLists = document.querySelectorAll('.mustdolist');
+    if(mustDoLists[0].innerText.length===0) mustDoLists[0].innerText = 'hello';
+    else if(mustDoLists[1].innerText.length===0) mustDoLists[1].innerText = 'hello';
+    else if(mustDoLists[2].innerText.length===0) mustDoLists[2].innerText = 'hello';
     else alert('maximum of 3 must-do-lists permitted');
 }
 addMustDoList.addEventListener('click', handleAddMustDoList)
@@ -308,7 +311,7 @@ fetch(`/hidden/${calYr}/${calMth}`).then(res => res.json()).then((json) => json.
                 if(Number(_date)>20){
                     dates[i].innerHTML += `<ul><li class="schedule"><img src="../img/done.png">${title}</li>`;
                 }
-            }   else if(det === _date){
+            }   else if(det === _date && month.indexOf(calMth) - 1 === _mth){
                 // 달력이 현재 한달이 더 느리고, 일정이 다음 달의 것일 때
                 if(Number(_date)<7){
                     dates[i].innerHTML += `<ul><li class="schedule"><img src="../img/done.png">${title}</li>`;
@@ -316,41 +319,44 @@ fetch(`/hidden/${calYr}/${calMth}`).then(res => res.json()).then((json) => json.
             }
         }        
     }
+
+
+    const schedules = document.querySelectorAll('.schedule');
+    const scheduleModal = document.querySelector('.schedule-modal');
+    const scheduleModalInner = document.querySelector('.schedule-modal-inner');
+    const scheduleModalOverlay = document.querySelector('.schedule-modal-overlay');
+    const scheduleModalTitle = document.querySelector('.schedule-control-title');
+    const scheduleModalDone = document.querySelector('.schedule-control-done');
+    // const scheduleList = document.querySelectorAll('li.schedule');
+    // const uls = document.querySelectorAll('ul');
+    const scheduleRightClick = (event) => {
+        // event.preventDefault();
+        console.log(event)
+        if ( event.which === 3 ){
+            const pageX = event.pageX;
+            const pageY = event.pageY;
+            
+            if (scheduleModal.classList.contains('hidden')){
+                scheduleModal.classList.remove('hidden');
+            }
+            
+            const title = "title : " + event.target.innerText;
+            scheduleModalTitle.innerText = title;       
+            scheduleModal.style.top = pageY;
+            scheduleModal.style.left = pageX;
+            // 5.5 here needs to be done;
+        } 
+    }
+    const customizeContextMenu = (event) => {
+        console.log("i am working ..")
+        event.preventDefault();
+    }
+    schedules.forEach(e => e.addEventListener('mousedown', scheduleRightClick));
+    // schedules.forEach(e => e.addEventListener('contextmenu', customizeContextMenu));
+    // dates.forEach(e => e.addEventListener('contextmenu', customizeContextMenu));
+    // scheduleList.forEach(e => e.addEventListener('contextmenu', customizeContextMenu));
+    // uls.forEach(e => e.addEventListener('contextmenu', customizeContextMenu));
+    document.addEventListener('contextmenu', customizeContextMenu)
+    // window.preventDeault();
 }));
-        // if(dates[i].innerText===_date){
-        //     dates[i].innerHTML += `<ul><li class="schedule"><img src="../img/done.png">${title}</li>`;
-        // }
 
-// for(let i=0; i<schedules.length; i++){
-//     console.log(i);
-//     const schedule = schedules[i];
-//     const date = schedule['date'];
-//     const title = schedule['title'];
-//     const description = schedule['description'];
-//     let _date = String(schedule['date']);
-//     _date = _date.split(' ').slice(1,4);
-    
-//     const _day = _date[1];
-//     const day = String(parseInt(_day));
-//     const dates = document.querySelectorAll('.date');
-    
-//     if(dates.innerText===day){
-//         dates.innerHTML += `<ul><li class="schedule"><img src="../img/done.png">${title}</li>`
-//         continue;
-//     }
-// }
-
-
-    // const handleDateClick = (event) => {
-    //     console.log(event.target.innerHTML);
-    //     event.target.innerHTML+=`<ul><li class='schedule'><img src="../img/done.png">JAVASCRIPT 코딩하기</li><li class='schedule'>JAVASCRIPT 코딩하기</li></ul>`
-    //     console.log(event.target.innerHTML);
-    // }
-    // date.forEach(e => e.addEventListener('click', handleDateClick));
-    
-    // const handleDeleteClick = () => {
-    //     const schedules = document.querySelectorAll('.schedule');
-    
-    // }
-
-    // 현재 구조는 uri에 연도와 월이 명시되면 그에 따라서 html이 변경되고, 다시 html에서 연월을 받아와서 그에 따른 데이터를 가져오는 구조! 
